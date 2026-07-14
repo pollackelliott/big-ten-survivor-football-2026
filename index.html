@@ -645,13 +645,18 @@ function openWeekSheet(week){
     picksHTML += '</div>';
   }
 
+  const conferenceSortName = (g)=> {
+    const awayConf = BIG_TEN_TEAMS.includes(g.away), homeConf = BIG_TEN_TEAMS.includes(g.home);
+    if (awayConf && homeConf) return g.away < g.home ? g.away : g.home;
+    return awayConf ? g.away : g.home;
+};
   const gamesSorted = [...weekGames].sort((a,b) => {
     const aIneligible = gameIsIneligible(a) ? 1 : 0;
     const bIneligible = gameIsIneligible(b) ? 1 : 0;
     if(aIneligible !== bIneligible) return aIneligible - bIneligible; // eligible games first, FCS games last
     return revealed
       ? Math.max(pickCount(b.away),pickCount(b.home)) - Math.max(pickCount(a.away),pickCount(a.home))
-      : new Date(a.kickoff_at) - new Date(b.kickoff_at);
+      : conferenceSortName(a).localeCompare(conferenceSortName(b));
   });
 
   let gamesHTML = '<div class="week-section"><h3>Scores</h3>';
@@ -869,6 +874,8 @@ function renderPickOptionsFor(week, usedTeams, nonConLeft, g5Left){
       options.push({ team, opp: opponentOf(week, team), cat, editableUntil });
     });
   });
+  
+  options.sort((a,b) => a.team.localeCompare(b.team));
 
   if(options.length === 0){
     container.insertAdjacentHTML('beforeend', `<div class="empty">No eligible, open picks remain for this week.</div>`);
