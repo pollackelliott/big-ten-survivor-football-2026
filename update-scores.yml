@@ -1,0 +1,54 @@
+name: Update Big Ten Survivor scores
+
+on:
+  # Runs every 30 min, every day, from ~11am-noon Central through ~midnight-1am
+  # Central — deliberately a bit wider than exactly noon-midnight on both ends,
+  # since Central's UTC offset shifts by an hour with Daylight Saving Time
+  # partway through the season (CDT in Sept/Oct, CST from early Nov on), and
+  # it's harmless to poll slightly early/late on days with no games (the
+  # scraper just finds nothing and upserts nothing).
+  # 17:00 UTC = noon CDT / 11am CST.  05:59 UTC(next day) = 12:59am CDT / midnight CST.
+  schedule:
+    - cron: '*/30 17-23 * * *'
+    - cron: '*/30 0-5 * * *'
+  # Manual trigger, e.g. to backfill or force a specific week.
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week number to update (leave blank to auto-detect from today's date)"
+        required: false
+        default: ''
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install requests
+
+      - name: Determine week
+        id: week
+        run: |
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            echo "week=${{ github.event.inputs.week }}" >> "$GITHUB_OUTPUT"
+          else
+            # Season kicks off Sept 5, 2026 (Big Ten's Week 1 Saturday). Adjust WEEK1_DATE
+            # if the season-opening date ever changes.
+            WEEK1_DATE="2026-09-05"
+            TODAY=$(date -u +%Y-%m-%d)
+            DAYS=$(( ( $(date -u -d "$TODAY" +%s) - $(date -u -d "$WEEK1_DATE" +%s) ) / 86400 ))
+            WEEK=$(( DAYS / 7 + 1 ))
+            if [ $WEEK -lt 1 ]; then WEEK=1; fi
+            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run scraper
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python scripts/update_scores.py --week ${{ steps.week.outputs.week }} --year 2026
