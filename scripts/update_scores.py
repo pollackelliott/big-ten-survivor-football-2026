@@ -40,12 +40,12 @@ def normalize(name: str) -> str:
 
 def fetch_week(week: int, year: int) -> list[dict]:
     """
-    groups=12 is ESPN's internal id for the Big Ten; scoped this way the
+    groups=5 is ESPN's internal id for the Big Ten; scoped this way the
     scoreboard endpoint returns every game involving a Big Ten team, including
     their non-conference matchups (not just Big-Ten-vs-Big-Ten games).
     """
     url = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
-    params = {"groups": 12, "week": week, "year": year, "seasontype": 2, "limit": 100}
+    params = {"groups": 5, "week": week, "year": year, "seasontype": 2, "limit": 100}
     resp = requests.get(url, params=params, timeout=20)
     resp.raise_for_status()
     return resp.json().get("events", [])
