@@ -311,7 +311,9 @@ let CLASSIFICATION = {};  // opponent -> {eligible, category}
 let PLAYERS_RAW = [];     // {id, name}
 let BOARD_ROWS = [];      // from get_public_board(): {player_id, player_name, week, team, revealed}
 let MY_PICKS = [];        // from get_my_picks(), only if IDENTITY set
-
+let WEEK_REOPEN_TIMES = {};
+let WEEK_DEADLINES = {};
+  
 async function loadAll(){
   const { data: { session } } = await sb.auth.getSession();
   IDENTITY = session ? { id: session.user.id } : null;
@@ -330,6 +332,32 @@ async function loadAll(){
   (cls || []).forEach(r => CLASSIFICATION[r.opponent] = r);
   PLAYERS_RAW = players || [];
   BOARD_ROWS = board || [];
+  WEEK_DEADLINES = {};
+
+const deadlineResults = await Promise.all(
+  Array.from({ length: WEEKS }, (_, i) =>
+    sb.rpc('week_deadline', { p_week: i + 1 })
+  )
+);
+
+deadlineResults.forEach((result, i) => {
+  if(!result.error && result.data){
+    WEEK_DEADLINES[i + 1] = new Date(result.data);
+  }
+});
+  WEEK_REOPEN_TIMES = {};
+
+const reopenResults = await Promise.all(
+  Array.from({ length: WEEKS }, (_, i) =>
+    sb.rpc('week_reopen_time', { p_week: i + 1 })
+  )
+);
+
+reopenResults.forEach((result, i) => {
+  if(!result.error && result.data){
+    WEEK_REOPEN_TIMES[i + 1] = new Date(result.data);
+  }
+});
 
   if(IDENTITY){
     const { data: mine, error: e5 } = await sb.rpc('get_my_picks');
@@ -361,29 +389,12 @@ function classifyPick(week, team){
   return row.category; // 'g5' | 'not_g5'
 }
 function weekDeadline(week){
-  const weekGames = GAMES.filter(g => g.week === week);
-  if(weekGames.length === 0) return null;
-  const earliest = weekGames.reduce((a,b) => new Date(a.kickoff_at) < new Date(b.kickoff_at) ? a : b);
-  const d = new Date(earliest.kickoff_at); // UTC instant is fine for comparison purposes
-  // find the on/after Saturday in Central-time terms (approx: treat as UTC date math,
-  // good enough for display since the DB is authoritative for actual enforcement)
-  const dow = d.getUTCDay(); // 0=Sun..6=Sat
-  const add = (6 - dow + 7) % 7;
-  const sat = new Date(d); sat.setUTCDate(d.getUTCDate() + add);
-  // 10:59am Central ≈ 15:59 UTC (16:59 during CST) — close enough for display gating;
-  // the database is the source of truth for actual lock enforcement.
-  sat.setUTCHours(15, 59, 0, 0);
-  return sat;
+  return WEEK_DEADLINES[week] || null;
 }
 // Mirrors week_reopen_time() in the DB: the Sunday 5:00am Central following
 // a week's own Saturday deadline — when the NEXT week's picks open.
 function weekReopenTime(week){
-  const wd = weekDeadline(week);
-  if(!wd) return null;
-  const next = new Date(wd);
-  next.setUTCDate(next.getUTCDate() + 1);
-  next.setUTCHours(10, 0, 0, 0); // approx 5:00am Central; DB is authoritative
-  return next;
+  return WEEK_REOPEN_TIMES[week] || null;
 }
 function pickEditableUntil(week, team){
   const g = gameFor(week, team);
