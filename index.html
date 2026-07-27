@@ -809,7 +809,7 @@ function renderMyPick(){
     const week = status.pendingWeek ?? status.frozenWeek;
     const pick = MY_PICKS.find(m => m.week === week);
     const note = status.state === 'pending'
-      ? `Waiting on your Week ${week} result before Week ${week + 1} opens.`
+      ? `Enjoy the games.`
       : `Next week opens Sunday at 5:00am.`;
     el.innerHTML = `<div class="panel">
       <h3>Week ${week}</h3>
