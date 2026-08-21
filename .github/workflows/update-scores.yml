@@ -1,16 +1,13 @@
 name: Update Big Ten Survivor scores
 
 on:
-  # Runs every 30 min, every day, from ~11am-noon Central through ~midnight-1am
-  # Central — deliberately a bit wider than exactly noon-midnight on both ends,
-  # since Central's UTC offset shifts by an hour with Daylight Saving Time
-  # partway through the season (CDT in Sept/Oct, CST from early Nov on), and
-  # it's harmless to poll slightly early/late on days with no games (the
-  # scraper just finds nothing and upserts nothing).
-  # 17:00 UTC = noon CDT / 11am CST.  05:59 UTC(next day) = 12:59am CDT / midnight CST.
+  # Scheduled score refreshes. Cron is UTC. We intentionally run every day
+  # during the game window so weather/reschedule oddities are still covered.
+  # 17:00-08:30 UTC reaches well past the end of late Central-time games,
+  # including after daylight saving time ends.
   schedule:
     - cron: '*/30 17-23 * * *'
-    - cron: '*/30 0-5 * * *'
+    - cron: '*/30 0-8 * * *'
   # Manual trigger, e.g. to backfill or force a specific week.
   workflow_dispatch:
     inputs:
@@ -19,9 +16,17 @@ on:
         required: false
         default: ''
 
+permissions:
+  contents: read
+
+concurrency:
+  group: big-ten-score-ingestion
+  cancel-in-progress: true
+
 jobs:
   update-scores:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -33,21 +38,54 @@ jobs:
 
       - name: Determine week
         id: week
+        shell: bash
         run: |
+          set -euo pipefail
+
           if [ -n "${{ github.event.inputs.week }}" ]; then
             echo "week=${{ github.event.inputs.week }}" >> "$GITHUB_OUTPUT"
-          else
-            # Season kicks off Sept 5, 2026 (Big Ten's Week 1 Saturday). Adjust WEEK1_DATE
-            # if the season-opening date ever changes.
-            WEEK1_DATE="2026-09-05"
-            TODAY=$(date -u +%Y-%m-%d)
-            DAYS=$(( ( $(date -u -d "$TODAY" +%s) - $(date -u -d "$WEEK1_DATE" +%s) ) / 86400 ))
-            WEEK=$(( DAYS / 7 + 1 ))
-            if [ $WEEK -lt 1 ]; then WEEK=1; fi
+            echo "run_scraper=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Big Ten Survivor Week 1 begins Monday, Aug. 31. USC-San Jose State
+          # on Aug. 29 is Week Zero and is explicitly outside the pool.
+          # Automatic week rollover uses Chicago local date so Sunday-night UTC
+          # does not accidentally advance the survivor week.
+          WEEK1_MONDAY="2026-08-31"
+          TODAY=$(TZ=America/Chicago date +%Y-%m-%d)
+          DAYS=$(( ( $(date -d "$TODAY" +%s) - $(date -d "$WEEK1_MONDAY" +%s) ) / 86400 ))
+
+          if [ "$DAYS" -lt 0 ]; then
+            echo "week=1" >> "$GITHUB_OUTPUT"
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              echo "run_scraper=false" >> "$GITHUB_OUTPUT"
+              echo "Big Ten Survivor has not begun; scheduled ingestion skipped until Aug. 31."
+            else
+              # Allow a preseason manual smoke test against Week 1.
+              echo "run_scraper=true" >> "$GITHUB_OUTPUT"
+              echo "Preseason manual run targeting pool Week 1."
+            fi
+            exit 0
+          fi
+
+          WEEK=$(( DAYS / 7 + 1 ))
+
+          # This pool has 13 regular-season weeks. Scheduled jobs after Week 13
+          # should not start ingesting championship/postseason games. A manual
+          # dispatch can still run any explicitly requested week.
+          if [ "$WEEK" -gt 13 ]; then
             echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+            echo "run_scraper=false" >> "$GITHUB_OUTPUT"
+            echo "Regular-season pool is complete; scheduled score ingestion skipped."
+          else
+            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+            echo "run_scraper=true" >> "$GITHUB_OUTPUT"
+            echo "Auto-detected pool week $WEEK from Chicago date $TODAY."
           fi
 
       - name: Run scraper
+        if: steps.week.outputs.run_scraper == 'true'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
