@@ -2,7 +2,13 @@
 """
 Pulls every FBS game involving a Big Ten team for a given week from ESPN's
 public (unofficial) scoreboard endpoint, validates the response against the
-schedule already loaded in Supabase, and upserts safe score/result updates.
+survivor schedule already loaded in Supabase, and upserts safe score/result
+updates.
+
+Big Ten Survivor 2026 canon begins with Week 1 on Monday, Aug. 31. Any Week
+Zero game before that date (including USC-San Jose State on Aug. 29) is
+explicitly excluded from the pool and must never be ingested as a survivor
+game.
 
 Env vars required (set as GitHub Actions secrets):
   SUPABASE_URL          e.g. https://xxxxx.supabase.co
@@ -15,8 +21,10 @@ Usage:
 """
 
 import argparse
+from datetime import date, datetime
 import os
 import sys
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -26,13 +34,15 @@ BIG_TEN_TEAMS = {
     "Penn State", "Purdue", "Rutgers", "UCLA", "USC", "Washington", "Wisconsin",
 }
 
+CHICAGO = ZoneInfo("America/Chicago")
+POOL_START_DATE = date(2026, 8, 31)
+
 # ESPN display/API names that are known to differ from this app's canonical
 # names. Keep this list intentionally small: anything else is surfaced as a
 # workflow failure so a new mismatch cannot remain silent.
 NAME_FIXES = {
     "Southern California": "USC",
     "Massachusetts": "UMass",
-    "San José State": "San Jose State",
 }
 
 
@@ -45,6 +55,14 @@ def supabase_headers(service_key: str) -> dict[str, str]:
         "apikey": service_key,
         "Authorization": f"Bearer {service_key}",
     }
+
+
+def parse_iso_datetime(value: str) -> datetime:
+    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def local_game_date(value: str) -> date:
+    return parse_iso_datetime(value).astimezone(CHICAGO).date()
 
 
 def fetch_known_opponents(base_url: str, service_key: str) -> set[str]:
@@ -65,12 +83,12 @@ def fetch_known_opponents(base_url: str, service_key: str) -> set[str]:
     return {row["opponent"] for row in rows if row.get("opponent")}
 
 
-def fetch_expected_game_keys(
+def fetch_expected_games(
     base_url: str, service_key: str, week: int
-) -> set[tuple[str, str]]:
-    """Return (away, home) pairs already loaded for this pool week."""
+) -> dict[tuple[str, str], str]:
+    """Return loaded survivor games as (away, home) -> kickoff_at."""
     resp = requests.get(
-        f"{base_url}/rest/v1/games?select=away,home&week=eq.{week}",
+        f"{base_url}/rest/v1/games?select=away,home,kickoff_at&week=eq.{week}",
         headers=supabase_headers(service_key),
         timeout=20,
     )
@@ -82,9 +100,9 @@ def fetch_expected_game_keys(
         resp.raise_for_status()
 
     return {
-        (row["away"], row["home"])
+        (row["away"], row["home"]): row["kickoff_at"]
         for row in resp.json()
-        if row.get("away") and row.get("home")
+        if row.get("away") and row.get("home") and row.get("kickoff_at")
     }
 
 
@@ -214,16 +232,43 @@ def main() -> None:
 
     print(f"Fetching week {args.week}, {args.year}...")
     known_opponents = fetch_known_opponents(base_url, service_key)
-    expected_keys = fetch_expected_game_keys(base_url, service_key, args.week)
+    expected_games = fetch_expected_games(base_url, service_key, args.week)
+    expected_keys = set(expected_games)
     print(f"  loaded {len(known_opponents)} configured opponent name(s) from Supabase")
     print(f"  loaded {len(expected_keys)} existing week-{args.week} game(s) from Supabase")
+
+    # A pre-Aug. 31 row in the survivor database is itself a configuration
+    # error. This catches an accidentally loaded Week Zero game even though we
+    # correctly ignore the same event when ESPN returns it.
+    excluded_loaded = {
+        key
+        for key, kickoff_at in expected_games.items()
+        if local_game_date(kickoff_at) < POOL_START_DATE
+    }
+    for away, home in sorted(excluded_loaded):
+        print(
+            f"::error title=Excluded Week Zero game in survivor schedule::"
+            f"Week {args.week}: {away} @ {home} is before {POOL_START_DATE.isoformat()} "
+            "and must be removed from the survivor games table.",
+            file=sys.stderr,
+        )
+
+    active_expected_keys = expected_keys - excluded_loaded
 
     events = fetch_week(args.week, args.year)
     rows: list[dict] = []
     parse_errors: list[str] = []
+    excluded_espn_count = 0
 
     for event in events:
         try:
+            if local_game_date(event["date"]) < POOL_START_DATE:
+                excluded_espn_count += 1
+                print(
+                    f"  ignored ESPN Week Zero event {event.get('id', 'unknown')} "
+                    f"({event['date']}) — outside survivor canon"
+                )
+                continue
             rows.append(parse_event(event, args.week))
         except (KeyError, StopIteration, TypeError, ValueError) as exc:
             event_id = event.get("id", "unknown")
@@ -231,7 +276,10 @@ def main() -> None:
             parse_errors.append(message)
             print(f"::error title=ESPN event parse failure::{message}", file=sys.stderr)
 
-    print(f"  found {len(rows)} recognized Big Ten-involved ESPN game(s)")
+    print(
+        f"  found {len(rows)} recognized in-pool Big Ten ESPN game(s); "
+        f"ignored {excluded_espn_count} Week Zero event(s)"
+    )
 
     unknown_names = find_unknown_names(rows, known_opponents)
     for name in unknown_names:
@@ -246,16 +294,27 @@ def main() -> None:
     missing_expected: set[tuple[str, str]] = set()
     unexpected_espn: set[tuple[str, str]] = set()
 
-    if expected_keys:
-        missing_expected = expected_keys - espn_keys
-        unexpected_espn = espn_keys - expected_keys
+    if active_expected_keys:
+        missing_expected = active_expected_keys - espn_keys
+        unexpected_espn = espn_keys - active_expected_keys
 
+        # Before Week 1 begins, ESPN may not yet have every future event wired
+        # into its group scoreboard feed. Surface those omissions as warnings
+        # during preseason, then make them blocking errors once the pool opens.
+        preseason = datetime.now(CHICAGO).date() < POOL_START_DATE
         for away, home in sorted(missing_expected):
-            print(
-                f"::error title=Scheduled game missing from ESPN::"
-                f"Week {args.week}: {away} @ {home} exists in Supabase but was not returned by ESPN.",
-                file=sys.stderr,
-            )
+            if preseason:
+                print(
+                    f"::warning title=Preseason game missing from ESPN::"
+                    f"Week {args.week}: {away} @ {home} exists in Supabase but is not yet "
+                    "returned by ESPN. This becomes a blocking error when Week 1 begins."
+                )
+            else:
+                print(
+                    f"::error title=Scheduled game missing from ESPN::"
+                    f"Week {args.week}: {away} @ {home} exists in Supabase but was not returned by ESPN.",
+                    file=sys.stderr,
+                )
 
         for away, home in sorted(unexpected_espn):
             print(
@@ -265,22 +324,25 @@ def main() -> None:
                 file=sys.stderr,
             )
 
-        # Once a schedule exists, only update rows that match it exactly. This
-        # prevents a changed/renamed matchup from creating a duplicate game row
-        # that could make opponent lookup ambiguous. Valid matching games still
-        # receive their score updates even when another matchup needs review.
-        safe_rows = [row for row in rows if game_key(row) in expected_keys]
+        # Once a survivor schedule exists, only update rows that match it
+        # exactly. This prevents a changed/renamed matchup from creating a
+        # duplicate game row that could make opponent lookup ambiguous.
+        safe_rows = [row for row in rows if game_key(row) in active_expected_keys]
     else:
-        # Preseason/bootstrap behavior: if the week has never been loaded, ESPN
-        # is allowed to establish the initial schedule.
+        preseason = datetime.now(CHICAGO).date() < POOL_START_DATE
+        # Bootstrap behavior: if the week has never been loaded, ESPN may
+        # establish the initial in-pool schedule. Week Zero has already been
+        # filtered above and therefore can never bootstrap into the pool.
         safe_rows = rows
 
     upsert_games(safe_rows, base_url, service_key)
 
+    blocking_missing = set() if preseason else missing_expected
     problems = (
         len(parse_errors)
         + len(unknown_names)
-        + len(missing_expected)
+        + len(excluded_loaded)
+        + len(blocking_missing)
         + len(unexpected_espn)
     )
     if problems:
@@ -289,7 +351,7 @@ def main() -> None:
             "valid matching rows were preserved and the annotated errors above require review"
         )
 
-    print("  validation passed; ESPN response matches the configured schedule")
+    print("  validation passed; ESPN response is safe for the configured survivor schedule")
 
 
 if __name__ == "__main__":
