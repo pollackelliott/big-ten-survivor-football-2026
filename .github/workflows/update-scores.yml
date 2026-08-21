@@ -48,19 +48,28 @@ jobs:
             exit 0
           fi
 
-          # ESPN regular-season weeks roll on Monday. Use Chicago local date so
-          # a Sunday-night run does not become Monday merely because UTC did.
-          # Week 1 also contains USC's Aug. 29 opener; dates before Aug. 31 are
-          # deliberately clamped to Week 1.
+          # Big Ten Survivor Week 1 begins Monday, Aug. 31. USC-San Jose State
+          # on Aug. 29 is Week Zero and is explicitly outside the pool.
+          # Automatic week rollover uses Chicago local date so Sunday-night UTC
+          # does not accidentally advance the survivor week.
           WEEK1_MONDAY="2026-08-31"
           TODAY=$(TZ=America/Chicago date +%Y-%m-%d)
           DAYS=$(( ( $(date -d "$TODAY" +%s) - $(date -d "$WEEK1_MONDAY" +%s) ) / 86400 ))
 
           if [ "$DAYS" -lt 0 ]; then
-            WEEK=1
-          else
-            WEEK=$(( DAYS / 7 + 1 ))
+            echo "week=1" >> "$GITHUB_OUTPUT"
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              echo "run_scraper=false" >> "$GITHUB_OUTPUT"
+              echo "Big Ten Survivor has not begun; scheduled ingestion skipped until Aug. 31."
+            else
+              # Allow a preseason manual smoke test against Week 1.
+              echo "run_scraper=true" >> "$GITHUB_OUTPUT"
+              echo "Preseason manual run targeting pool Week 1."
+            fi
+            exit 0
           fi
+
+          WEEK=$(( DAYS / 7 + 1 ))
 
           # This pool has 13 regular-season weeks. Scheduled jobs after Week 13
           # should not start ingesting championship/postseason games. A manual
