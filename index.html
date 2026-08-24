@@ -226,7 +226,7 @@
         <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.6;">
           <li>Picks lock every Saturday at <strong>10:59am Central</strong>.</li>
           <li><strong>Exception:</strong> if your pick plays Thursday or Friday, that pick locks at kickoff</li>
-          <li>You can change your pick freely before it locks — swap teams as many times as you like.</li>
+          <li>You may change your pick as many times as you'd like until it locks</li>
         </ul>
       </div>
     </div>
@@ -504,10 +504,27 @@ function computeCurrentWeek(){
 }
 
 /* ======================== RENDER: GRID ======================== */
+function playerNameSort(a, b){
+  const splitName = (name) => {
+    const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+    return {
+      last: parts.length ? parts[parts.length - 1] : '',
+      first: parts.slice(0, -1).join(' ')
+    };
+  };
+  const aName = splitName(a.name);
+  const bName = splitName(b.name);
+  return aName.last.localeCompare(bName.last, undefined, { sensitivity:'base' })
+    || aName.first.localeCompare(bName.first, undefined, { sensitivity:'base' });
+}
+
+function playerStatusNameSort(a, b){
+  if(a.alive !== b.alive) return a.alive ? -1 : 1;
+  return playerNameSort(a, b);
+}
+
 function renderGrid(){
-  const alive = ALL_PLAYERS.filter(p=>p.alive);
-  const dead = ALL_PLAYERS.filter(p=>!p.alive).sort((a,b)=>(b.eliminatedWeek||0)-(a.eliminatedWeek||0));
-  const ordered = [...alive, ...dead];
+  const ordered = [...ALL_PLAYERS].sort(playerStatusNameSort);
   const shownWeeks = WEEKS; // show the full season — future weeks are just empty/clickable for the schedule
 
   let head = '<th class="corner">Player</th>';
@@ -557,7 +574,7 @@ function renderGrid(){
 
 /* ======================== RENDER: PLAYERS ======================== */
 function renderPlayers(){
-  const sorted = [...ALL_PLAYERS].sort((a,b)=>a.name.localeCompare(b.name));
+  const sorted = [...ALL_PLAYERS].sort(playerStatusNameSort);
   document.getElementById('playersList').innerHTML = sorted.map(p => {
     const lastRevealedWeek = p.revealed.map((r,i)=>r && p.picks[i] ? i+1 : null).filter(Boolean).pop();
     const sub = p.alive
