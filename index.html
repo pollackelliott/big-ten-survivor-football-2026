@@ -72,7 +72,7 @@
   .pick-option .opt-name{flex:1; font-weight:700; font-size:14px;}
   .pick-option .opt-meta{font-size:11px; color:var(--text-faint); font-weight:600;}
   .opt-tag{font-size:9.5px; font-weight:800; letter-spacing:.05em; padding:2px 7px; border-radius:999px; text-transform:uppercase; flex:none;}
-  .opt-tag.{background:rgba(226,104,92,.14); color:var(--red);}
+  .opt-tag.g5{background:rgba(226,104,92,.14); color:var(--red);}
   .opt-tag.nc{background:rgba(255,255,255,.14); color:var(--gold);}
   .allowance-row{display:flex; gap:8px; margin-bottom:14px;}
   .allowance{flex:1; background:var(--panel-2); border:1px solid var(--hair); border-radius:10px; padding:10px; text-align:center;}
@@ -97,7 +97,7 @@
   .badge.dead{background:rgba(226,104,92,0.1); color:var(--red); border:1px solid rgba(226,104,92,0.3);}
   .card .chev{color:var(--text-faint); font-size:16px; flex:none;}
 
-  .grid-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(255,255,255,0.14); border-radius:12px;}
+  .grid-wrap{overflow:auto; max-height:calc(100vh - 120px); max-height:calc(100dvh - 120px); overscroll-behavior:contain; -webkit-overflow-scrolling:touch; border:1px solid rgba(255,255,255,0.14); border-radius:12px;}
   table.grid{border-collapse:separate; border-spacing:0; width:max-content;}
   table.grid thead th{position:sticky; top:0; z-index:3; background:var(--panel-2); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--gold); padding:11px 6px; text-align:center; border-bottom:2px solid rgba(255,255,255,0.45); font-weight:800; min-width:56px;}
   table.grid th.corner{position:sticky; left:0; top:0; z-index:5; background:var(--panel-2); text-align:left; padding:11px 10px; border-right:1px solid rgba(255,255,255,0.14); min-width:122px; color:var(--text);}
@@ -209,13 +209,13 @@
     <div class="view" id="view-rules">
       <div class="panel">
         <h3>Big Ten Survivor - Football</h3>
-        <div class="current-pick-banner" style="text-align:center; margin-top:12px;">Email pollack.elliott@gmail.com if you have any questions.</div>
+        <div class="current-pick-banner" style="text-align:center; margin-top:12px;">Email pollack.elliott@gmail.com with any questions<br>Venmo @elliott-pollack $25 to play</div>
         <ul style="margin:16px 0; padding-left:18px; font-size:14px; line-height:1.6;">
           <li>Each week, pick one Big Ten team to win, straight up</li>
           <li>If your team loses, you're eliminated</li>
           <li>You can only pick each team one time the entire season</li>
         </ul>
-        <div class="field"><label>Non-Conference &amp;  Limits</label></div>
+        <div class="field"><label>Non-Conference &amp; G5 Limits</label></div>
         <ul style="margin:0 0 16px; padding-left:18px; font-size:14px; line-height:1.6;">
           <li>You may pick a team with a non-conference opponent up to <strong>three times</strong> all season</li>
           <li>You may only pick a team with a G5 opponent <strong>one time</strong> all season. This also counts as one of your 3 non-conference picks</li>
@@ -554,7 +554,7 @@ function renderGrid(){
       }
     }
     return `<tr class="${p.alive?'alive':'dead'}"><td class="name-cell" data-id="${p.id}">
-      <div class="name-inner"><div class="team-dot" style="--tc:${teamColor(p.fanOf)}; --tc2:${teamSecondaryColor(p.fanOf)}"></div>
+      <div class="name-inner">${p.fanOf ? `<div class="team-dot" style="--tc:${teamColor(p.fanOf)}; --tc2:${teamSecondaryColor(p.fanOf)}"></div>` : '<div class="team-dot" style="visibility:hidden"></div>'}
       <div class="name-text">${p.name}</div></div></td>${cells}</tr>`;
   }).join('');
 
@@ -582,7 +582,7 @@ function renderPlayers(){
       ? (lastRevealedWeek ? `Week ${lastRevealedWeek}: ${p.picks[lastRevealedWeek-1]}` : 'No revealed picks yet')
       : `Out — Week ${p.eliminatedWeek}`;
     return `<div class="card ${p.alive?'alive':'dead'}" data-id="${p.id}" style="--tc:${teamColor(p.fanOf)}; --tc2:${teamSecondaryColor(p.fanOf)}">
-      <div class="avatar"></div>
+      ${p.fanOf ? '<div class="avatar"></div>' : '<div class="avatar" style="visibility:hidden"></div>'}
       <div class="info"><div class="name">${p.name}</div><div class="sub">${sub}</div></div>
       <div class="badge ${p.alive?'alive':'dead'}">${p.alive?'ALIVE':'OUT'}</div>
       <div class="chev">›</div>
@@ -707,9 +707,6 @@ function openWeekSheet(week){
         if(isPicked && played) classes.push(isWinner ? 'pick-hit' : 'pick-miss');
         return classes.join(' ');
       };
-      // Once a game is final, the win/loss coloring above always wins — team
-      // brand color (and the plain-white/grey opponent designation) is only
-      // for browsing a game that hasn't been decided yet.
       const sideMarkup = (team) => {
         if(played){
           return `<span class="game-team-name">${team}</span>`;
@@ -736,9 +733,6 @@ function openWeekSheet(week){
 
 /* ======================== MY PICK TAB ======================== */
 
-// Mirrors the database's own gating (submit_pick's checks 1a/1b/1c) so the
-// UI never shows something the server would then reject. The database
-// remains the actual authority — this is display logic only.
 function computeMyPickState(){
   const now = new Date();
   const picksByWeek = {};
@@ -750,7 +744,6 @@ function computeMyPickState(){
     const mine = picksByWeek[w];
 
     if(!mine){
-      // nothing picked for week w yet — is it actually open?
       const prevWeek = weeksWithGames[i-1];
       if(prevWeek !== undefined){
         const prevPick = picksByWeek[prevWeek];
@@ -769,13 +762,11 @@ function computeMyPickState(){
       return { state:'open', targetWeek: w };
     }
 
-    // week w has a pick — still within its own edit window?
     const editableUntil = mine.editable_until ? new Date(mine.editable_until) : null;
     if(editableUntil && editableUntil > now){
       return { state:'open', targetWeek: w };
     }
 
-    // locked — decided yet?
     const result = resultFor(w, mine.team);
     if(result === 0){
       return { state:'eliminated', eliminatedWeek: w };
@@ -787,7 +778,6 @@ function computeMyPickState(){
     if(reopen && now < reopen){
       return { state:'frozen', frozenWeek: w, reopensAt: reopen };
     }
-    // decided win, reopened — move on and check the next week
   }
 
   const lastWeek = weeksWithGames[weeksWithGames.length - 1];
@@ -838,14 +828,9 @@ function renderMyPick(){
     return;
   }
 
-  // state === 'open'
   const targetWeek = status.targetWeek;
   const usedTeams = new Set((me ? me.picks : []).filter(Boolean));
 
-  // Allowance available FOR THIS WEEK's menu excludes whatever's currently
-  // picked for this same week — otherwise editing your own G5/non-con pick
-  // would wrongly count it against itself and hide its sibling options.
-  // (Mirrors submit_pick's own `week <> p_week` exclusion in the database.)
   let nonConLeft = 3, g5Left = 1;
   (me ? me.picks : []).forEach((pick, i) => {
     if(i === targetWeek - 1 || !pick) return;
@@ -1073,9 +1058,6 @@ function wireLogoutLink(){
   }
 }
 
-// Supabase redirects here with a recovery token after the user clicks the
-// reset-password email link; onAuthStateChange fires PASSWORD_RECOVERY and
-// we take over the whole My Pick panel with a simple "set a new password" form.
 function showPasswordResetPanel(){
   document.querySelector('.tab[data-tab="mypick"]').click();
   document.getElementById('myPickPanel').innerHTML = `<div class="panel">
