@@ -1,0 +1,69 @@
+name: Patch My Pick matchup labels
+
+on:
+  push:
+    branches:
+      - fix/mypick-home-away-label
+    paths:
+      - .github/workflows/patch-mypick-label.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/mypick-home-away-label
+      - name: Patch display logic
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text()
+
+          replacements = [
+              (
+                  "options.push({team,opp:opponentOf(week,team),cat,editableUntil});",
+                  "options.push({team,opp:opponentOf(week,team),cat,editableUntil,isAway:g.away===team});",
+              ),
+              (
+                  '<span class="opt-meta">vs ${o.opp}</span>',
+                  '<span class="opt-meta">${o.isAway?\'at\':\'vs\'} ${o.opp}</span>',
+              ),
+              (
+                  "map(t=>({team:t,opp:opponentOf(1,t)}))",
+                  "map(t=>({team:t,opp:opponentOf(1,t),isAway:g.away===t}))",
+              ),
+              (
+                  '${o.team} (vs ${o.opp})',
+                  '${o.team} (${o.isAway?\'at\':\'vs\'} ${o.opp})',
+              ),
+          ]
+
+          for old, new in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one occurrence of {old!r}; found {count}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text)
+          PY
+      - name: Verify change
+        shell: bash
+        run: |
+          grep -F "isAway:g.away===team" index.html
+          grep -F "o.isAway?'at':'vs'" index.html
+          git diff --check
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Show road picks with at instead of vs"
+          git push origin HEAD:fix/mypick-home-away-label
