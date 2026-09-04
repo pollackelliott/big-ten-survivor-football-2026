@@ -1,0 +1,38 @@
+name: Apply persistent team colors
+
+on:
+  push:
+    branches:
+      - ui-persist-team-colors
+    paths:
+      - .github/workflows/apply-persistent-team-colors.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ui-persist-team-colors
+      - name: Keep conference team chips after kickoff
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text()
+          old = 'sideMarkup=team=>{if(played)return `<span class="game-team-name">${team}</span>`;if(CONFERENCE_TEAMS.includes(team))'
+          new = 'sideMarkup=team=>{if(CONFERENCE_TEAMS.includes(team))'
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one played-sideMarkup condition, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Keep team colors during live and final games"
+          git push origin HEAD:ui-persist-team-colors
