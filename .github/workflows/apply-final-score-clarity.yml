@@ -21,7 +21,6 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           path = Path('index.html')
           text = path.read_text()
           marker = '/* final-score-clarity */'
@@ -29,13 +28,7 @@ jobs:
               raise SystemExit('final-score-clarity already present')
           if '</style>' not in text:
               raise SystemExit('Could not find </style> in index.html')
-
-          css = """
-  /* final-score-clarity */
-  .game-row:has(.game-team.winner) .game-team:not(.winner){opacity:.55;}
-  .game-team.winner .game-score{color:var(--text);font-weight:900;font-size:1.08em;}
-  .game-row:has(.game-team.winner) > .game-at + .game-team::after{content:' F';color:var(--text-faint);font-size:10px;font-weight:900;letter-spacing:.05em;margin-left:2px;}
-"""
+          css = "\n  /* final-score-clarity */\n  .game-row:has(.game-team.winner) .game-team:not(.winner){opacity:.55;}\n  .game-team.winner .game-score{color:var(--text);font-weight:900;font-size:1.08em;}\n  .game-row:has(.game-team.winner) > .game-at + .game-team::after{content:' F';color:var(--text-faint);font-size:10px;font-weight:900;letter-spacing:.05em;margin-left:2px;}\n"
           path.write_text(text.replace('</style>', css + '</style>', 1))
           PY
       - name: Commit patch
