@@ -1,0 +1,38 @@
+name: Apply restore score row alignment
+
+on:
+  push:
+    branches:
+      - ui-restore-score-row-alignment
+    paths:
+      - .github/workflows/apply-restore-score-row-alignment.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ui-restore-score-row-alignment
+      - name: Restore aligned team columns
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text()
+          old = ".game-team{flex:1 1 auto; min-width:0; color:var(--text-dim); font-weight:600; white-space:nowrap;}"
+          new = ".game-team{flex:1; min-width:0; color:var(--text-dim); font-weight:600; white-space:nowrap;}"
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one current game-team rule, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Restore aligned score columns"
+          git push origin HEAD:ui-restore-score-row-alignment
