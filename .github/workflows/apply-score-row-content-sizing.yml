@@ -1,0 +1,38 @@
+name: Apply score row content sizing
+
+on:
+  push:
+    branches:
+      - ui-score-row-content-sizing
+    paths:
+      - .github/workflows/apply-score-row-content-sizing.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ui-score-row-content-sizing
+      - name: Keep each team side on one line
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text()
+          old = ".game-team{flex:1; min-width:0; color:var(--text-dim); font-weight:600;}"
+          new = ".game-team{flex:1 1 auto; min-width:0; color:var(--text-dim); font-weight:600; white-space:nowrap;}"
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one game-team rule, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Keep score rows on one line"
+          git push origin HEAD:ui-score-row-content-sizing
