@@ -1,0 +1,64 @@
+name: Apply pending pick pills
+
+on:
+  push:
+    branches:
+      - ui-pending-pick-pills
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Patch pending pick display
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text()
+
+          old_helper = """function pendingPickColor(name){const p=teamColor(name),s=teamSecondaryColor(name),bg=getComputedStyle(document.documentElement).getPropertyValue('--panel').trim()||'#000000',pc=colorContrast(p,bg),sc=colorContrast(s,bg);if(pc>=3)return p;if(sc>=3)return s;return 'color-mix(in srgb, '+p+' 55%, white)';}"""
+          new_helper = """function pendingPickStyle(name){const bg=teamColor(name),preferred=teamSecondaryColor(name),preferredContrast=colorContrast(preferred,bg),whiteContrast=colorContrast('#FFFFFF',bg),blackContrast=colorContrast('#000000',bg);let fg=preferred;if(preferredContrast<3)fg=whiteContrast>=blackContrast?'#FFFFFF':'#000000';return `background:${bg};color:${fg};`;}"""
+          if text.count(old_helper) != 1:
+              raise SystemExit(f'pending helper anchor count={text.count(old_helper)}')
+          text = text.replace(old_helper, new_helper, 1)
+
+          old_cell = """else cells+=`<td class=\"pick neutral\" data-week=\"${wk}\" title=\"${pick}\" style=\"color:${pendingPickColor(pick)}\">${teamAbbr(pick)}</td>`;"""
+          new_cell = """else cells+=`<td class=\"pick neutral\" data-week=\"${wk}\" title=\"${pick}\"><span class=\"pending-pill\" style=\"${pendingPickStyle(pick)}\">${teamAbbr(pick)}</span></td>`;"""
+          if text.count(old_cell) != 1:
+              raise SystemExit(f'pending cell anchor count={text.count(old_cell)}')
+          text = text.replace(old_cell, new_cell, 1)
+
+          css_anchor = "td.pick.neutral{color:var(--text-dim);}"
+          css_new = css_anchor + ".pending-pill{display:inline-block;padding:2px 6px;border-radius:6px;font-weight:800;line-height:1.1;}"
+          if text.count(css_anchor) != 1:
+              raise SystemExit(f'pending CSS anchor count={text.count(css_anchor)}')
+          text = text.replace(css_anchor, css_new, 1)
+
+          path.write_text(text)
+          PY
+
+      - name: Validate patch
+        shell: bash
+        run: |
+          git diff --check
+          grep -Fq 'function pendingPickStyle(name)' index.html
+          grep -Fq 'class="pending-pill"' index.html
+          grep -Fq '.pending-pill{display:inline-block;padding:2px 6px;border-radius:6px' index.html
+          ! grep -Fq 'pendingPickColor(pick)' index.html
+
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Show pending picks as team color pills'
+          git push
