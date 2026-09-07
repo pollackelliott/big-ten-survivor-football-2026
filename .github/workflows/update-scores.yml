@@ -71,6 +71,18 @@ jobs:
 
           WEEK=$(( DAYS / 7 + 1 ))
 
+          # On Mondays, also revisit the week that just ended. This protects
+          # late Sunday games from being stranded if ESPN finalizes them after
+          # the calendar rolls into the next survivor week.
+          DOW=$(TZ=America/Chicago date +%u)
+          if [ "$DOW" = "1" ] && [ "$WEEK" -gt 1 ]; then
+            PREVIOUS_WEEK=$(( WEEK - 1 ))
+            if [ "$PREVIOUS_WEEK" -le 13 ]; then
+              echo "previous_week=$PREVIOUS_WEEK" >> "$GITHUB_OUTPUT"
+              echo "Monday backfill enabled for pool week $PREVIOUS_WEEK."
+            fi
+          fi
+
           # This pool has 13 regular-season weeks. Scheduled jobs after Week 13
           # should not start ingesting championship/postseason games. A manual
           # dispatch can still run any explicitly requested week.
@@ -83,6 +95,13 @@ jobs:
             echo "run_scraper=true" >> "$GITHUB_OUTPUT"
             echo "Auto-detected pool week $WEEK from Chicago date $TODAY."
           fi
+
+      - name: Backfill previous week
+        if: steps.week.outputs.previous_week != ''
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python scripts/update_scores.py --week ${{ steps.week.outputs.previous_week }} --year 2026
 
       - name: Run scraper
         if: steps.week.outputs.run_scraper == 'true'
