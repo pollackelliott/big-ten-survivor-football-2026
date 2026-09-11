@@ -1,0 +1,43 @@
+name: Fix commissioner name sort
+
+on:
+  push:
+    branches:
+      - fix/commissioner-week-view
+    paths:
+      - .github/workflows/fix-commissioner-name-sort.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/commissioner-week-view
+      - name: Preserve display-name alphabetical ordering
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('index.html')
+          text=path.read_text()
+          old="rows.sort((a,b)=>b.week-a.week||comparePlayerNames(a.player_name,b.player_name));"
+          new="rows.sort((a,b)=>b.week-a.week||a.player_name.localeCompare(b.player_name,undefined,{sensitivity:'base'}));"
+          count=text.count(old)
+          if count!=1:
+              raise SystemExit(f'Expected one commissioner sort expression; found {count}')
+          path.write_text(text.replace(old,new,1))
+          PY
+          grep -F "rows.sort((a,b)=>b.week-a.week||a.player_name.localeCompare" index.html
+          git diff --check
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Preserve commissioner display-name sort"
+          git push origin HEAD:fix/commissioner-week-view
