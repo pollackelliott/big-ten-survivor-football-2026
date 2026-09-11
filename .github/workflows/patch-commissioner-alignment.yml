@@ -1,0 +1,55 @@
+name: Patch commissioner alignment and sort
+
+on:
+  push:
+    branches:
+      - fix/commissioner-alignment-missing-first
+    paths:
+      - .github/workflows/patch-commissioner-alignment.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/commissioner-alignment-missing-first
+      - name: Patch commissioner rows
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text()
+          replacements = [
+              ('.admin-row .an{flex:1; font-weight:700;}', '.admin-row .an{flex:1; min-width:0; font-weight:700;}'),
+              ('.admin-row select{background:var(--panel-2); border:1px solid var(--hair); color:var(--text); border-radius:6px; padding:5px 8px; font-size:12.5px;}', '.admin-row select{background:var(--panel-2); border:1px solid var(--hair); color:var(--text); border-radius:6px; padding:5px 8px; font-size:12.5px; width:178px; flex:0 0 178px; min-width:0;}'),
+              ('.admin-row button{background:none; border:1px solid var(--red); color:var(--red); border-radius:6px; padding:5px 9px; font-size:11.5px; cursor:pointer;}', '.admin-row button{background:none; border:1px solid var(--red); color:var(--red); border-radius:6px; padding:5px 9px; font-size:11.5px; cursor:pointer; width:60px; flex:0 0 60px; text-align:center;}.admin-del-spacer{width:60px; flex:0 0 60px;}@media (max-width:430px){.admin-row select{width:170px; flex-basis:170px;}.admin-row button,.admin-del-spacer{width:58px; flex-basis:58px;}}'),
+              ("rows.sort((a,b)=>b.week-a.week||a.player_name.localeCompare(b.player_name,undefined,{sensitivity:'base'}));", "rows.sort((a,b)=>b.week-a.week||((a.team?1:0)-(b.team?1:0))||a.player_name.localeCompare(b.player_name,undefined,{sensitivity:'base'}));"),
+              ("${r.team?`<button class=\"admin-del\" data-pid=\"${r.player_id}\" data-week=\"${r.week}\">Delete</button>`:''}", "${r.team?`<button class=\"admin-del\" data-pid=\"${r.player_id}\" data-week=\"${r.week}\">Delete</button>`:`<span class=\"admin-del-spacer\" aria-hidden=\"true\"></span>`}")
+          ]
+          for old, new in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one occurrence, found {count}: {old!r}')
+              text = text.replace(old, new, 1)
+          path.write_text(text)
+          PY
+      - name: Verify change
+        shell: bash
+        run: |
+          grep -F "((a.team?1:0)-(b.team?1:0))" index.html
+          grep -F 'admin-del-spacer' index.html
+          grep -F 'width:178px; flex:0 0 178px' index.html
+          git diff --check
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Align commissioner rows and prioritize missing picks"
+          git push origin HEAD:fix/commissioner-alignment-missing-first
