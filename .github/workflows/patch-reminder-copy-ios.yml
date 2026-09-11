@@ -1,0 +1,40 @@
+name: Patch reminder copy iOS
+on:
+  push:
+    branches: [fix/reminder-email-rpc-search-path]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/reminder-email-rpc-search-path
+      - name: Patch commissioner reminder copy
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old_start="async function openAdminSheet(){const{data,error}=await sb.rpc('admin_get_all_picks');if(error){alert('Not authorized as commissioner: '+error.message);return;}const allTeams="
+          new_start="async function openAdminSheet(){const{data,error}=await sb.rpc('admin_get_all_picks');if(error){alert('Not authorized as commissioner: '+error.message);return;}const{data:emailRows,error:emailErr}=await sb.rpc('admin_get_missing_pick_email_list');const emailInfo=!emailErr&&emailRows&&emailRows[0]?emailRows[0]:null;const allTeams="
+          assert old_start in s
+          s=s.replace(old_start,new_start,1)
+          old_handler="showSheet();const copyEmailsBtn=document.getElementById('copyReminderEmailsBtn'),emailMsg=document.getElementById('adminEmailMsg');if(copyEmailsBtn)copyEmailsBtn.addEventListener('click',async()=>{copyEmailsBtn.disabled=true;copyEmailsBtn.textContent='Loading…';try{const{data:emailRows,error:emailErr}=await sb.rpc('admin_get_missing_pick_email_list');if(emailErr)throw emailErr;const info=emailRows&&emailRows[0]?emailRows[0]:{week:visibleWeek,player_count:0,emails:''};if(!info.emails){emailMsg.textContent=`Nobody alive owes a Week ${info.week} pick.`;copyEmailsBtn.textContent='Copy Reminder Emails';return;}await navigator.clipboard.writeText(info.emails);emailMsg.textContent=`Copied ${info.player_count} Week ${info.week} email${Number(info.player_count)===1?'':'s'} to clipboard.`;copyEmailsBtn.textContent=`Copied ${info.player_count} Emails`;setTimeout(()=>{copyEmailsBtn.textContent='Copy Reminder Emails';},1800);}catch(err){emailMsg.textContent='Could not copy emails: '+(err.message||err);copyEmailsBtn.textContent='Copy Reminder Emails';}finally{copyEmailsBtn.disabled=false;}});document.querySelectorAll('.admin-team-select').forEach"
+          new_handler="showSheet();const copyEmailsBtn=document.getElementById('copyReminderEmailsBtn'),emailMsg=document.getElementById('adminEmailMsg'),fallbackCopy=text=>{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,ta.value.length);const ok=document.execCommand('copy');document.body.removeChild(ta);if(!ok)throw new Error('Clipboard unavailable');};if(copyEmailsBtn)copyEmailsBtn.addEventListener('click',()=>{const info=emailInfo||{week:visibleWeek,player_count:0,emails:''};if(emailErr){emailMsg.textContent='Could not load reminder emails: '+(emailErr.message||emailErr);return;}if(!info.emails){emailMsg.textContent=`Nobody alive owes a Week ${info.week} pick.`;return;}const copied=()=>{emailMsg.textContent=`Copied ${info.player_count} Week ${info.week} email${Number(info.player_count)===1?'':'s'} to clipboard.`;copyEmailsBtn.textContent=`Copied ${info.player_count} Emails`;setTimeout(()=>{copyEmailsBtn.textContent='Copy Reminder Emails';},1800);},failed=err=>{try{fallbackCopy(info.emails);copied();}catch(copyErr){emailMsg.textContent='Could not copy emails: '+(copyErr.message||err.message||err);}};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(info.emails).then(copied).catch(failed);else failed(new Error('Clipboard API unavailable'));});document.querySelectorAll('.admin-team-select').forEach"
+          assert old_handler in s
+          s=s.replace(old_handler,new_handler,1)
+          p.write_text(s)
+      - name: Verify
+        run: |
+          grep -q "const emailInfo=" index.html
+          grep -q "fallbackCopy" index.html
+          git diff --check
+      - name: Commit
+        run: |
+          git config user.name "Elliott Pollack"
+          git config user.email "pollack.elliott@gmail.com"
+          git add index.html
+          git commit -m "Harden commissioner reminder copy on iOS"
+          git push
