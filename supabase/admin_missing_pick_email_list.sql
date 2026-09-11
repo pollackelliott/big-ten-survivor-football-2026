@@ -5,7 +5,7 @@ returns table(week integer, player_count bigint, emails text)
 language plpgsql
 stable
 security definer
-set search_path = ''
+set search_path = public, auth
 as $function$
 declare
   v_week integer;
