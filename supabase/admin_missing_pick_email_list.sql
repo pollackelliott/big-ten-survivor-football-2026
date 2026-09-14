@@ -23,23 +23,11 @@ begin
     select pl.id, pl.name, u.email
     from public.players pl
     join auth.users u on u.id = pl.id
-    where not exists (
-      select 1 from generate_series(1, v_week - 1) as prior(week)
-      where not exists (
+    where public.player_eliminated_week(pl.id) is null
+      and not exists (
         select 1 from public.picks pk
-        where pk.player_id = pl.id and pk.week = prior.week
+        where pk.player_id = pl.id and pk.week = v_week
       )
-    )
-    and not exists (
-      select 1 from public.picks pk
-      where pk.player_id = pl.id
-        and pk.week < v_week
-        and public.pick_result(pk.week, pk.team) = 0
-    )
-    and not exists (
-      select 1 from public.picks pk
-      where pk.player_id = pl.id and pk.week = v_week
-    )
   )
   select v_week, count(*)::bigint,
          coalesce(string_agg(m.email, ', ' order by m.name), '')
