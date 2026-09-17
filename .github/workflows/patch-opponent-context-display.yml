@@ -1,0 +1,24 @@
+name: Patch opponent context display
+on:
+  push:
+    branches: [ui/opponent-context-display]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ui/opponent-context-display
+      - run: python scripts/patch_opponent_context_display.py
+      - run: |
+          grep -q 'opponent-context.*isAway' index.html
+          grep -q 'game&&game.away===pick' index.html
+          git diff --check
+      - run: |
+          git config user.name "Elliott Pollack"
+          git config user.email "pollack.elliott@gmail.com"
+          git add index.html
+          git commit -m "Polish opponent labels in popup cards"
+          git push
