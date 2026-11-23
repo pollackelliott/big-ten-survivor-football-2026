@@ -1,0 +1,70 @@
+name: Initialize Football Season
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Season year (leave blank to infer from workbook filename/current year)"
+        required: false
+        default: ""
+      schedule_file:
+        description: "Optional repo-relative workbook path; blank = the only .xlsx file in data/"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: football-season-initialization
+  cancel-in-progress: false
+
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install initializer dependencies
+        run: pip install requests openpyxl
+
+      - name: Validate workbook and initialize Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          INPUT_YEAR: ${{ inputs.year }}
+          INPUT_SCHEDULE_FILE: ${{ inputs.schedule_file }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [ -n "$INPUT_YEAR" ]; then
+            args+=(--year "$INPUT_YEAR")
+          fi
+          if [ -n "$INPUT_SCHEDULE_FILE" ]; then
+            args+=(--schedule-file "$INPUT_SCHEDULE_FILE")
+          fi
+          python scripts/initialize_season.py "${args[@]}"
+
+      - name: Commit generated season configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app-config.js season.json data/normalized-schedule.json
+          if git diff --cached --quiet; then
+            echo "No generated config changes to commit."
+          else
+            git commit -m "Initialize football season from schedule workbook"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
