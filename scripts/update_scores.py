@@ -17,11 +17,13 @@ Env vars required (set as GitHub Actions secrets):
 
 Usage:
   python update_scores.py --week 3
-  python update_scores.py --week 3 --year 2026
+  python update_scores.py --week 3 --year YEAR
 """
 
 import argparse
+import json
 from datetime import date, datetime
+from pathlib import Path
 import os
 import sys
 from zoneinfo import ZoneInfo
@@ -35,7 +37,17 @@ BIG_TEN_TEAMS = {
 }
 
 CHICAGO = ZoneInfo("America/Chicago")
-POOL_START_DATE = date(2026, 8, 31)
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_season_config() -> dict:
+    path = ROOT / "season.json"
+    config = json.loads(path.read_text(encoding="utf-8"))
+    if not config.get("year") or not config.get("pool_start_date"):
+        raise RuntimeError("season.json has not been initialized")
+    return config
+
+
 
 # ESPN display/API names that are known to differ from this app's canonical
 # names. Keep this list intentionally small: anything else is surfaced as a
@@ -224,13 +236,17 @@ def upsert_games(rows: list[dict], base_url: str, service_key: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--week", type=int, required=True)
-    parser.add_argument("--year", type=int, default=2026)
+    parser.add_argument("--year", type=int, default=None)
     args = parser.parse_args()
+
+    season = load_season_config()
+    year = year or int(season["year"])
+    pool_start_date = date.fromisoformat(season["pool_start_date"])
 
     base_url = os.environ["SUPABASE_URL"].rstrip("/")
     service_key = os.environ["SUPABASE_SERVICE_KEY"]
 
-    print(f"Fetching week {args.week}, {args.year}...")
+    print(f"Fetching week {args.week}, {year}...")
     known_opponents = fetch_known_opponents(base_url, service_key)
     expected_games = fetch_expected_games(base_url, service_key, args.week)
     expected_keys = set(expected_games)
@@ -243,26 +259,26 @@ def main() -> None:
     excluded_loaded = {
         key
         for key, kickoff_at in expected_games.items()
-        if local_game_date(kickoff_at) < POOL_START_DATE
+        if local_game_date(kickoff_at) < pool_start_date
     }
     for away, home in sorted(excluded_loaded):
         print(
             f"::error title=Excluded Week Zero game in survivor schedule::"
-            f"Week {args.week}: {away} @ {home} is before {POOL_START_DATE.isoformat()} "
+            f"Week {args.week}: {away} @ {home} is before {pool_start_date.isoformat()} "
             "and must be removed from the survivor games table.",
             file=sys.stderr,
         )
 
     active_expected_keys = expected_keys - excluded_loaded
 
-    events = fetch_week(args.week, args.year)
+    events = fetch_week(args.week, year)
     rows: list[dict] = []
     parse_errors: list[str] = []
     excluded_espn_count = 0
 
     for event in events:
         try:
-            if local_game_date(event["date"]) < POOL_START_DATE:
+            if local_game_date(event["date"]) < pool_start_date:
                 excluded_espn_count += 1
                 print(
                     f"  ignored ESPN Week Zero event {event.get('id', 'unknown')} "
@@ -301,7 +317,7 @@ def main() -> None:
         # Before Week 1 begins, ESPN may not yet have every future event wired
         # into its group scoreboard feed. Surface those omissions as warnings
         # during preseason, then make them blocking errors once the pool opens.
-        preseason = datetime.now(CHICAGO).date() < POOL_START_DATE
+        preseason = datetime.now(CHICAGO).date() < pool_start_date
         for away, home in sorted(missing_expected):
             if preseason:
                 print(
@@ -329,7 +345,7 @@ def main() -> None:
         # duplicate game row that could make opponent lookup ambiguous.
         safe_rows = [row for row in rows if game_key(row) in active_expected_keys]
     else:
-        preseason = datetime.now(CHICAGO).date() < POOL_START_DATE
+        preseason = datetime.now(CHICAGO).date() < pool_start_date
         # Bootstrap behavior: if the week has never been loaded, ESPN may
         # establish the initial in-pool schedule. Week Zero has already been
         # filtered above and therefore can never bootstrap into the pool.
