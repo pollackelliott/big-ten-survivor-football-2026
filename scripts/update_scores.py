@@ -5,10 +5,9 @@ public (unofficial) scoreboard endpoint, validates the response against the
 survivor schedule already loaded in Supabase, and upserts safe score/result
 updates.
 
-Big Ten Survivor 2026 canon begins with Week 1 on Monday, Aug. 31. Any Week
-Zero game before that date (including USC-San Jose State on Aug. 29) is
-explicitly excluded from the pool and must never be ingested as a survivor
-game.
+The pool start date is generated from the initialized season schedule.
+Any ESPN game before that date is outside the survivor canon and must never
+be ingested as a survivor game.
 
 Env vars required (set as GitHub Actions secrets):
   SUPABASE_URL          e.g. https://xxxxx.supabase.co
