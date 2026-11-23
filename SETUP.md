@@ -1,68 +1,119 @@
-# Big Ten Survivor 2026 — Deployment Guide
+# Big Ten Survivor Football — New Season Setup
 
-This is the same proven stack as the SEC pool — a **separate** Supabase
-project and a **separate** GitHub repo, so the two pools never share data,
-credentials, or risk of one affecting the other.
+This branch is the reusable football engine preserved from the completed 2026 pool.
 
-## 1. Create the Supabase project
-1. Go to supabase.com → New project. Note the **Project URL** and, under
-   Settings → API, the **anon public key** and the **service_role key**
-   (keep the service_role key secret — it's never used in the browser).
-2. Open the SQL Editor → paste in the entire contents of `supabase/schema.sql`
-   → Run. This creates every table, the Big Ten opponent classification seed
-   data, and all the RPC functions in one shot.
+The goal is deliberately simple: **the commissioner's P4G5 Excel workbook is the season-definition file.** Do not convert it to CSV or manually seed the schedule.
 
-## 2. Turn off email confirmation
-Same as SEC: Authentication → Sign In / Providers → Email → turn off
-**"Confirm email"** → save. This is what makes signup log someone in
-immediately, with no confirmation email step.
+## What stays the same
 
-## 3. Create your commissioner account
-1. Authentication → Users → Add user. You can reuse the exact same email and
-   password you use for the SEC pool's commissioner account if you want it
-   to feel identical — it's a separate account under the hood either way,
-   since Supabase Auth accounts are scoped per-project.
-2. Copy that user's UUID.
-3. SQL Editor, new query:
-   ```sql
-   insert into admins (user_id) values ('paste-your-uuid-here');
-   ```
+The workbook must use the proven layout:
 
-## 4. Wire up the frontend
-Open `index.html` and fill in the two placeholders near the top of the
-`<script>` block:
-```js
-const SUPABASE_URL = 'YOUR-BIGTEN-SUPABASE-URL';
-const SUPABASE_ANON_KEY = 'YOUR-BIGTEN-ANON-KEY';
+- Sheet name: `P4G5`
+- Column A: conference teams
+- Row 1, columns B:N: Weeks 1–13
+- Cells contain opponents, optionally prefixed by `at ` or `vs. `
+- Yellow fill (`#FFD966`) = power-conference nonconference opponent
+- Blue fill (`#4A86E8`) = G5 opponent
+- Gray fill (`#CCCCCC`) = FCS / ineligible opponent
+- Unfilled cells = conference games
+- Blank cells = bye
+
+Recommended filename: `2027 Big Ten Football Schedule Grid.xlsx`.
+
+The initializer validates the workbook before writing anything. It checks team rows, week headers, reciprocal conference matchups, classification fills, duplicate games, ESPN matchup agreement, and road-game `at` notation.
+
+## 1. Start the new season repo
+
+Create the new season repository from this `template/football-next-season` branch.
+
+Do **not** build from the archived `main` branch; `main` is the historical 2026 museum site.
+
+## 2. Create a fresh Supabase project
+
+Create a new Supabase project for this pool.
+
+In the Supabase SQL Editor, run the full current contents of:
+
+`supabase/schema.sql`
+
+The reusable schema intentionally contains no season-specific opponent seed rows. Those are generated from the workbook colors.
+
+Turn off email confirmation for the pool's normal self-service signup flow, matching the proven 2026 setup.
+
+## 3. Create the commissioner account
+
+Create the commissioner user in Supabase Auth, copy its UUID, then run:
+
+```sql
+insert into public.admins (user_id)
+values ('PASTE-COMMISSIONER-UUID-HERE');
 ```
 
-## 5. Set up the GitHub repo
-1. Push this whole folder to a new repo: **big-ten-survivor-football-2026**.
-2. Repo → Settings → Secrets and variables → Actions → add:
-   - `SUPABASE_URL` — this project's URL
-   - `SUPABASE_SERVICE_KEY` — this project's service_role key
-3. Repo → Settings → Pages → deploy from `main`, root folder.
-4. The workflow auto-detects the current week from Sept 5, 2026 (Big Ten's
-   own Week 1 Saturday — same date as SEC's this year, coincidentally).
+## 4. Add GitHub Actions secrets
 
-## 6. Load the schedule
-Same as SEC: Actions tab → "Update Big Ten Survivor scores" → Run workflow →
-type a week number → Run. Repeat for weeks 1–13 to backfill the full season
-schedule ahead of time, same as we did for SEC.
+Add these repository secrets:
 
-**One thing to verify on the very first run:** the scraper uses ESPN's
-group id `12` for the Big Ten, based on a community-sourced ID list rather
-than anything Anthropic could verify directly — the same way SEC's `8` was
-never independently confirmed until you actually ran it and saw real SEC
-teams come back. Check the first real run's log line
-(`found N Big Ten-involved game(s)`) and glance at the `games` table in
-Supabase to confirm the teams that came back are genuinely Big Ten
-opponents — if the number turns out to be wrong, it's a one-line fix in
-`scripts/update_scores.py`.
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY` — the public anon/client key
+- `SUPABASE_SERVICE_KEY` — the private service-role key
 
-## 7. Everything else
-Identical to the SEC pool: self-serve signup, dynamic pick menu, hidden
-Saturday-11am reveal, Sunday-5am freeze/reopen, elimination logic,
-commissioner tools, and the automated GitHub Actions score pipeline. No
-code differs in how any of that works — only the team roster, colors,
-opponent classification, background color, and page copy are different.
+The service-role key is used only by GitHub Actions and must never be put into browser code.
+
+## 5. Upload the schedule workbook
+
+Put the completed Excel workbook in the repository's `data/` folder.
+
+Normally there should be exactly one `.xlsx` workbook there.
+
+## 6. Initialize the season
+
+Open:
+
+**GitHub → Actions → Initialize Football Season → Run workflow**
+
+Usually both inputs can be left blank:
+
+- the year is inferred from the workbook filename when it contains `20XX`;
+- the workbook is inferred when it is the only `.xlsx` file in `data/`.
+
+The workflow will:
+
+1. validate the workbook;
+2. read its P4/G5/FCS color classifications;
+3. match every game against ESPN;
+4. resolve canonical home/away and exact kickoff timestamps;
+5. refuse to proceed if the Supabase project already contains players or picks;
+6. load the `games` table;
+7. load `opponent_classification`;
+8. verify the database exactly matches the normalized workbook;
+9. generate `season.json`;
+10. generate browser-safe `app-config.js`;
+11. save `data/normalized-schedule.json` as an auditable normalized copy.
+
+If validation fails, fix the workbook or a deliberate name alias and rerun it. A validation failure occurs before schedule data is written.
+
+## 7. Turn on GitHub Pages and test
+
+Deploy GitHub Pages from `main`, root folder, as in 2026.
+
+Before opening signups:
+
+- confirm the Picks Grid shows the expected schedule;
+- inspect a few Thursday/Friday games to confirm kickoff locking;
+- inspect P4/G5/FCS eligibility;
+- test signup and Week 1 submission;
+- test commissioner login.
+
+## 8. Normal season operation
+
+The existing **Update Big Ten Survivor scores** workflow reads `season.json`, so it no longer contains hardcoded 2026 dates or year values.
+
+The final 2026 rules are preserved in the reusable engine, including:
+
+- one team may be used only once;
+- nonconference/G5 limits;
+- FCS opponents are ineligible;
+- Saturday 10:59am Central reveal/lock;
+- earlier Thursday/Friday kickoff locks;
+- missed-pick elimination;
+- final-week dead-man switch preserving a lone winner or a zero-survivor finish.
