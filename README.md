@@ -1,5 +1,15 @@
 # Big Ten Survivor Football 2026
 
+## Planning a new football season?
+
+Use the reusable setup guide in **[SETUP.md](SETUP.md)**.
+
+For the next season, start from this `template/football-next-season` branch — **not** the archived `main` branch. The setup guide walks through creating the new Supabase project, adding GitHub secrets, uploading the same color-coded `P4G5` Excel schedule workbook format used in 2026, and running **Actions → Initialize Football Season → Run workflow**.
+
+The completed 2026 public site and historical data remain preserved separately on `main`.
+
+---
+
 A mobile-first survivor pool application for Big Ten college football, letting players sign up, submit weekly picks, and track live standings — fully self-service, with every eligibility rule and deadline enforced server-side rather than trusted to the browser.
 
 The project demonstrates an end-to-end application built on **Supabase (PostgreSQL, Auth, Row-Level Security)** for identity and business logic, **GitHub Actions** for automated score ingestion, and a **vanilla JavaScript** front end deployed on **GitHub Pages**.
