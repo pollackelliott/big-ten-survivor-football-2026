@@ -1,0 +1,3384 @@
+{
+  "meta": {
+    "season": 2026,
+    "exported_at": "2026-11-23T17:29:29.387521+00:00",
+    "source": "Supabase public read interfaces",
+    "contains_private_auth_data": false,
+    "pool_end_week": 6,
+    "winner_id": null,
+    "winner_name": null,
+    "survivors": 0,
+    "weeks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  "games": [
+    {
+      "id": 3,
+      "week": 1,
+      "away": "UMass",
+      "home": "Rutgers",
+      "kickoff_at": "2026-09-03T22:00:00+00:00",
+      "away_score": 37,
+      "home_score": 21,
+      "winner": "UMass",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 4,
+      "week": 1,
+      "away": "Eastern Illinois",
+      "home": "Minnesota",
+      "kickoff_at": "2026-09-04T00:00:00+00:00",
+      "away_score": 7,
+      "home_score": 59,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 5,
+      "week": 1,
+      "away": "UAB",
+      "home": "Illinois",
+      "kickoff_at": "2026-09-04T01:00:00+00:00",
+      "away_score": 23,
+      "home_score": 42,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 6,
+      "week": 1,
+      "away": "Indiana State",
+      "home": "Purdue",
+      "kickoff_at": "2026-09-04T23:00:00+00:00",
+      "away_score": 19,
+      "home_score": 44,
+      "winner": "Purdue",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 7,
+      "week": 1,
+      "away": "Toledo",
+      "home": "Michigan State",
+      "kickoff_at": "2026-09-05T00:00:00+00:00",
+      "away_score": 20,
+      "home_score": 30,
+      "winner": "Michigan State",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 8,
+      "week": 1,
+      "away": "Fresno State",
+      "home": "USC",
+      "kickoff_at": "2026-09-05T01:00:00+00:00",
+      "away_score": 0,
+      "home_score": 39,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 10,
+      "week": 1,
+      "away": "Ohio",
+      "home": "Nebraska",
+      "kickoff_at": "2026-09-05T16:00:00+00:00",
+      "away_score": 21,
+      "home_score": 49,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 9,
+      "week": 1,
+      "away": "North Texas",
+      "home": "Indiana",
+      "kickoff_at": "2026-09-05T16:00:00+00:00",
+      "away_score": 16,
+      "home_score": 52,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 11,
+      "week": 1,
+      "away": "Ball State",
+      "home": "Ohio State",
+      "kickoff_at": "2026-09-05T16:30:00+00:00",
+      "away_score": 3,
+      "home_score": 56,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 13,
+      "week": 1,
+      "away": "Marshall",
+      "home": "Penn State",
+      "kickoff_at": "2026-09-05T19:30:00+00:00",
+      "away_score": 0,
+      "home_score": 45,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 12,
+      "week": 1,
+      "away": "Boise State",
+      "home": "Oregon",
+      "kickoff_at": "2026-09-05T19:30:00+00:00",
+      "away_score": 27,
+      "home_score": 34,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 14,
+      "week": 1,
+      "away": "Northern Illinois",
+      "home": "Iowa",
+      "kickoff_at": "2026-09-05T20:15:00+00:00",
+      "away_score": 0,
+      "home_score": 40,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 15,
+      "week": 1,
+      "away": "Western Michigan",
+      "home": "Michigan",
+      "kickoff_at": "2026-09-05T23:30:00+00:00",
+      "away_score": 12,
+      "home_score": 13,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 16,
+      "week": 1,
+      "away": "Hampton",
+      "home": "Maryland",
+      "kickoff_at": "2026-09-06T00:00:00+00:00",
+      "away_score": 0,
+      "home_score": 62,
+      "winner": "Maryland",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 17,
+      "week": 1,
+      "away": "South Dakota State",
+      "home": "Northwestern",
+      "kickoff_at": "2026-09-06T00:00:00+00:00",
+      "away_score": 18,
+      "home_score": 34,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 18,
+      "week": 1,
+      "away": "UCLA",
+      "home": "California",
+      "kickoff_at": "2026-09-06T02:30:00+00:00",
+      "away_score": 45,
+      "home_score": 24,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 19,
+      "week": 1,
+      "away": "Washington State",
+      "home": "Washington",
+      "kickoff_at": "2026-09-06T20:00:00+00:00",
+      "away_score": 10,
+      "home_score": 24,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 20,
+      "week": 1,
+      "away": "Wisconsin",
+      "home": "Notre Dame",
+      "kickoff_at": "2026-09-06T23:30:00+00:00",
+      "away_score": 13,
+      "home_score": 41,
+      "winner": "Notre Dame",
+      "updated_at": "2026-07-14T16:01:33.114609+00:00"
+    },
+    {
+      "id": 21,
+      "week": 2,
+      "away": "Rutgers",
+      "home": "Boston College",
+      "kickoff_at": "2026-09-11T23:30:00+00:00",
+      "away_score": 21,
+      "home_score": 28,
+      "winner": "Boston College",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 25,
+      "week": 2,
+      "away": "Howard",
+      "home": "Indiana",
+      "kickoff_at": "2026-09-12T16:00:00+00:00",
+      "away_score": 0,
+      "home_score": 55,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 22,
+      "week": 2,
+      "away": "Oklahoma",
+      "home": "Michigan",
+      "kickoff_at": "2026-09-12T16:00:00+00:00",
+      "away_score": 10,
+      "home_score": 17,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 26,
+      "week": 2,
+      "away": "Penn State",
+      "home": "Temple",
+      "kickoff_at": "2026-09-12T16:00:00+00:00",
+      "away_score": 27,
+      "home_score": 9,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 24,
+      "week": 2,
+      "away": "Wake Forest",
+      "home": "Purdue",
+      "kickoff_at": "2026-09-12T16:00:00+00:00",
+      "away_score": 38,
+      "home_score": 36,
+      "winner": "Wake Forest",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 23,
+      "week": 2,
+      "away": "Oregon",
+      "home": "Oklahoma State",
+      "kickoff_at": "2026-09-12T17:30:00+00:00",
+      "away_score": 31,
+      "home_score": 39,
+      "winner": "Oklahoma State",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 29,
+      "week": 2,
+      "away": "Eastern Michigan",
+      "home": "Michigan State",
+      "kickoff_at": "2026-09-12T19:30:00+00:00",
+      "away_score": 7,
+      "home_score": 35,
+      "winner": "Michigan State",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 31,
+      "week": 2,
+      "away": "Utah State",
+      "home": "Washington",
+      "kickoff_at": "2026-09-12T19:30:00+00:00",
+      "away_score": 14,
+      "home_score": 16,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 27,
+      "week": 2,
+      "away": "Mississippi State",
+      "home": "Minnesota",
+      "kickoff_at": "2026-09-12T19:30:00+00:00",
+      "away_score": 38,
+      "home_score": 13,
+      "winner": "Mississippi State",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 28,
+      "week": 2,
+      "away": "Duke",
+      "home": "Illinois",
+      "kickoff_at": "2026-09-12T19:30:00+00:00",
+      "away_score": 31,
+      "home_score": 27,
+      "winner": "Duke",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 30,
+      "week": 2,
+      "away": "Maryland",
+      "home": "UConn",
+      "kickoff_at": "2026-09-12T19:30:00+00:00",
+      "away_score": 38,
+      "home_score": 14,
+      "winner": "Maryland",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 32,
+      "week": 2,
+      "away": "Bowling Green",
+      "home": "Nebraska",
+      "kickoff_at": "2026-09-12T23:00:00+00:00",
+      "away_score": 7,
+      "home_score": 56,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 34,
+      "week": 2,
+      "away": "Western Illinois",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-09-12T23:15:00+00:00",
+      "away_score": 9,
+      "home_score": 36,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 33,
+      "week": 2,
+      "away": "San Diego State",
+      "home": "UCLA",
+      "kickoff_at": "2026-09-12T23:15:00+00:00",
+      "away_score": 10,
+      "home_score": 28,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 36,
+      "week": 2,
+      "away": "Iowa State",
+      "home": "Iowa",
+      "kickoff_at": "2026-09-12T23:30:00+00:00",
+      "away_score": 13,
+      "home_score": 16,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 35,
+      "week": 2,
+      "away": "Ohio State",
+      "home": "Texas",
+      "kickoff_at": "2026-09-12T23:30:00+00:00",
+      "away_score": 23,
+      "home_score": 24,
+      "winner": "Texas",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 37,
+      "week": 2,
+      "away": "Louisiana",
+      "home": "USC",
+      "kickoff_at": "2026-09-13T03:00:00+00:00",
+      "away_score": 30,
+      "home_score": 49,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:02:35.949063+00:00"
+    },
+    {
+      "id": 38,
+      "week": 3,
+      "away": "Portland State",
+      "home": "Oregon",
+      "kickoff_at": "2026-09-19T02:30:00+00:00",
+      "away_score": 0,
+      "home_score": 84,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 40,
+      "week": 3,
+      "away": "Kent State",
+      "home": "Ohio State",
+      "kickoff_at": "2026-09-19T16:00:00+00:00",
+      "away_score": 3,
+      "home_score": 59,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 39,
+      "week": 3,
+      "away": "Akron",
+      "home": "Minnesota",
+      "kickoff_at": "2026-09-19T16:00:00+00:00",
+      "away_score": 7,
+      "home_score": 41,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 41,
+      "week": 3,
+      "away": "Buffalo",
+      "home": "Penn State",
+      "kickoff_at": "2026-09-19T16:00:00+00:00",
+      "away_score": 13,
+      "home_score": 55,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 42,
+      "week": 3,
+      "away": "Eastern Michigan",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-09-19T16:30:00+00:00",
+      "away_score": 10,
+      "home_score": 54,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 43,
+      "week": 3,
+      "away": "Southern Illinois",
+      "home": "Illinois",
+      "kickoff_at": "2026-09-19T18:00:00+00:00",
+      "away_score": 10,
+      "home_score": 48,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 45,
+      "week": 3,
+      "away": "USC",
+      "home": "Rutgers",
+      "kickoff_at": "2026-09-19T19:30:00+00:00",
+      "away_score": 42,
+      "home_score": 35,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 44,
+      "week": 3,
+      "away": "UTEP",
+      "home": "Michigan",
+      "kickoff_at": "2026-09-19T19:30:00+00:00",
+      "away_score": 17,
+      "home_score": 52,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 47,
+      "week": 3,
+      "away": "Northern Iowa",
+      "home": "Iowa",
+      "kickoff_at": "2026-09-19T20:00:00+00:00",
+      "away_score": 0,
+      "home_score": 55,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 1,
+      "week": 3,
+      "away": "Western Kentucky",
+      "home": "Indiana",
+      "kickoff_at": "2026-09-19T20:00:00+00:00",
+      "away_score": 0,
+      "home_score": 38,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T15:50:43.435122+00:00"
+    },
+    {
+      "id": 49,
+      "week": 3,
+      "away": "Eastern Washington",
+      "home": "Washington",
+      "kickoff_at": "2026-09-19T23:15:00+00:00",
+      "away_score": 16,
+      "home_score": 48,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 48,
+      "week": 3,
+      "away": "North Dakota",
+      "home": "Nebraska",
+      "kickoff_at": "2026-09-19T23:15:00+00:00",
+      "away_score": 7,
+      "home_score": 34,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 51,
+      "week": 3,
+      "away": "Virginia Tech",
+      "home": "Maryland",
+      "kickoff_at": "2026-09-19T23:30:00+00:00",
+      "away_score": 35,
+      "home_score": 26,
+      "winner": "Virginia Tech",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 52,
+      "week": 3,
+      "away": "Michigan State",
+      "home": "Notre Dame",
+      "kickoff_at": "2026-09-19T23:30:00+00:00",
+      "away_score": 10,
+      "home_score": 27,
+      "winner": "Notre Dame",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 50,
+      "week": 3,
+      "away": "Colorado",
+      "home": "Northwestern",
+      "kickoff_at": "2026-09-19T23:30:00+00:00",
+      "away_score": 7,
+      "home_score": 41,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 53,
+      "week": 3,
+      "away": "Purdue",
+      "home": "UCLA",
+      "kickoff_at": "2026-09-20T03:00:00+00:00",
+      "away_score": 38,
+      "home_score": 52,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:02:43.46696+00:00"
+    },
+    {
+      "id": 54,
+      "week": 4,
+      "away": "Howard",
+      "home": "Rutgers",
+      "kickoff_at": "2026-09-25T23:00:00+00:00",
+      "away_score": 7,
+      "home_score": 58,
+      "winner": "Rutgers",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 55,
+      "week": 4,
+      "away": "Northwestern",
+      "home": "Indiana",
+      "kickoff_at": "2026-09-26T00:00:00+00:00",
+      "away_score": 23,
+      "home_score": 29,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 59,
+      "week": 4,
+      "away": "Illinois",
+      "home": "Ohio State",
+      "kickoff_at": "2026-09-26T16:00:00+00:00",
+      "away_score": 19,
+      "home_score": 42,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 56,
+      "week": 4,
+      "away": "UCLA",
+      "home": "Maryland",
+      "kickoff_at": "2026-09-26T17:30:00+00:00",
+      "away_score": 54,
+      "home_score": 3,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 61,
+      "week": 4,
+      "away": "Notre Dame",
+      "home": "Purdue",
+      "kickoff_at": "2026-09-26T18:00:00+00:00",
+      "away_score": 49,
+      "home_score": 10,
+      "winner": "Notre Dame",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 57,
+      "week": 4,
+      "away": "Iowa",
+      "home": "Michigan",
+      "kickoff_at": "2026-09-26T19:30:00+00:00",
+      "away_score": 20,
+      "home_score": 19,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 58,
+      "week": 4,
+      "away": "Nebraska",
+      "home": "Michigan State",
+      "kickoff_at": "2026-09-26T21:00:00+00:00",
+      "away_score": 31,
+      "home_score": 13,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 60,
+      "week": 4,
+      "away": "Wisconsin",
+      "home": "Penn State",
+      "kickoff_at": "2026-09-26T21:00:00+00:00",
+      "away_score": 24,
+      "home_score": 20,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 62,
+      "week": 4,
+      "away": "Oregon",
+      "home": "USC",
+      "kickoff_at": "2026-09-26T23:30:00+00:00",
+      "away_score": 41,
+      "home_score": 27,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 63,
+      "week": 4,
+      "away": "Minnesota",
+      "home": "Washington",
+      "kickoff_at": "2026-09-27T03:00:00+00:00",
+      "away_score": 27,
+      "home_score": 24,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:02:50.650058+00:00"
+    },
+    {
+      "id": 72,
+      "week": 5,
+      "away": "Penn State",
+      "home": "Northwestern",
+      "kickoff_at": "2026-10-03T00:00:00+00:00",
+      "away_score": 13,
+      "home_score": 34,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 75,
+      "week": 5,
+      "away": "Michigan",
+      "home": "Minnesota",
+      "kickoff_at": "2026-10-03T16:00:00+00:00",
+      "away_score": 14,
+      "home_score": 20,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 78,
+      "week": 5,
+      "away": "Michigan State",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-10-03T16:30:00+00:00",
+      "away_score": 3,
+      "home_score": 31,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 74,
+      "week": 5,
+      "away": "Ohio State",
+      "home": "Iowa",
+      "kickoff_at": "2026-10-03T19:30:00+00:00",
+      "away_score": 31,
+      "home_score": 14,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 76,
+      "week": 5,
+      "away": "Maryland",
+      "home": "Nebraska",
+      "kickoff_at": "2026-10-03T20:00:00+00:00",
+      "away_score": 23,
+      "home_score": 48,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 73,
+      "week": 5,
+      "away": "Purdue",
+      "home": "Illinois",
+      "kickoff_at": "2026-10-03T20:15:00+00:00",
+      "away_score": 24,
+      "home_score": 17,
+      "winner": "Purdue",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 77,
+      "week": 5,
+      "away": "Washington",
+      "home": "USC",
+      "kickoff_at": "2026-10-03T23:30:00+00:00",
+      "away_score": 21,
+      "home_score": 25,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 79,
+      "week": 5,
+      "away": "Indiana",
+      "home": "Rutgers",
+      "kickoff_at": "2026-10-04T00:00:00+00:00",
+      "away_score": 47,
+      "home_score": 15,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:02:57.962859+00:00"
+    },
+    {
+      "id": 64,
+      "week": 6,
+      "away": "Iowa",
+      "home": "Washington",
+      "kickoff_at": "2026-10-10T01:00:00+00:00",
+      "away_score": 41,
+      "home_score": 24,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 66,
+      "week": 6,
+      "away": "Indiana",
+      "home": "Nebraska",
+      "kickoff_at": "2026-10-10T16:00:00+00:00",
+      "away_score": 20,
+      "home_score": 17,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 67,
+      "week": 6,
+      "away": "Ball State",
+      "home": "Northwestern",
+      "kickoff_at": "2026-10-10T16:30:00+00:00",
+      "away_score": 14,
+      "home_score": 45,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 69,
+      "week": 6,
+      "away": "UCLA",
+      "home": "Oregon",
+      "kickoff_at": "2026-10-10T19:30:00+00:00",
+      "away_score": 17,
+      "home_score": 15,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 65,
+      "week": 6,
+      "away": "Illinois",
+      "home": "Michigan State",
+      "kickoff_at": "2026-10-10T19:30:00+00:00",
+      "away_score": 38,
+      "home_score": 37,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 68,
+      "week": 6,
+      "away": "Maryland",
+      "home": "Ohio State",
+      "kickoff_at": "2026-10-10T20:15:00+00:00",
+      "away_score": 16,
+      "home_score": 45,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 70,
+      "week": 6,
+      "away": "USC",
+      "home": "Penn State",
+      "kickoff_at": "2026-10-10T23:30:00+00:00",
+      "away_score": 31,
+      "home_score": 23,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 71,
+      "week": 6,
+      "away": "Minnesota",
+      "home": "Purdue",
+      "kickoff_at": "2026-10-11T00:00:00+00:00",
+      "away_score": 13,
+      "home_score": 41,
+      "winner": "Purdue",
+      "updated_at": "2026-07-14T16:02:57.625838+00:00"
+    },
+    {
+      "id": 80,
+      "week": 7,
+      "away": "Washington",
+      "home": "Purdue",
+      "kickoff_at": "2026-10-17T00:00:00+00:00",
+      "away_score": 38,
+      "home_score": 26,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 81,
+      "week": 7,
+      "away": "Ohio State",
+      "home": "Indiana",
+      "kickoff_at": "2026-10-17T16:00:00+00:00",
+      "away_score": 19,
+      "home_score": 15,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 84,
+      "week": 7,
+      "away": "Northwestern",
+      "home": "Michigan State",
+      "kickoff_at": "2026-10-17T16:00:00+00:00",
+      "away_score": 24,
+      "home_score": 21,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 82,
+      "week": 7,
+      "away": "Rutgers",
+      "home": "Maryland",
+      "kickoff_at": "2026-10-17T16:30:00+00:00",
+      "away_score": 37,
+      "home_score": 30,
+      "winner": "Rutgers",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 83,
+      "week": 7,
+      "away": "Penn State",
+      "home": "Michigan",
+      "kickoff_at": "2026-10-17T19:30:00+00:00",
+      "away_score": 18,
+      "home_score": 21,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 86,
+      "week": 7,
+      "away": "Wisconsin",
+      "home": "UCLA",
+      "kickoff_at": "2026-10-17T23:30:00+00:00",
+      "away_score": 7,
+      "home_score": 17,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 85,
+      "week": 7,
+      "away": "Nebraska",
+      "home": "Oregon",
+      "kickoff_at": "2026-10-18T03:00:00+00:00",
+      "away_score": 14,
+      "home_score": 17,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:03:04.278399+00:00"
+    },
+    {
+      "id": 88,
+      "week": 8,
+      "away": "Indiana",
+      "home": "Michigan",
+      "kickoff_at": "2026-10-24T16:00:00+00:00",
+      "away_score": 13,
+      "home_score": 6,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 90,
+      "week": 8,
+      "away": "Rutgers",
+      "home": "Northwestern",
+      "kickoff_at": "2026-10-24T16:00:00+00:00",
+      "away_score": 14,
+      "home_score": 42,
+      "winner": "Northwestern",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 87,
+      "week": 8,
+      "away": "Oregon",
+      "home": "Illinois",
+      "kickoff_at": "2026-10-24T19:00:00+00:00",
+      "away_score": 10,
+      "home_score": 21,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 91,
+      "week": 8,
+      "away": "Michigan State",
+      "home": "UCLA",
+      "kickoff_at": "2026-10-24T19:30:00+00:00",
+      "away_score": 10,
+      "home_score": 28,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 89,
+      "week": 8,
+      "away": "Iowa",
+      "home": "Minnesota",
+      "kickoff_at": "2026-10-24T19:30:00+00:00",
+      "away_score": 10,
+      "home_score": 13,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 92,
+      "week": 8,
+      "away": "USC",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-10-24T23:30:00+00:00",
+      "away_score": 7,
+      "home_score": 24,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:03:09.158022+00:00"
+    },
+    {
+      "id": 95,
+      "week": 9,
+      "away": "Illinois",
+      "home": "Maryland",
+      "kickoff_at": "2026-10-31T16:00:00+00:00",
+      "away_score": 20,
+      "home_score": 17,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 94,
+      "week": 9,
+      "away": "Wisconsin",
+      "home": "Iowa",
+      "kickoff_at": "2026-10-31T16:00:00+00:00",
+      "away_score": 0,
+      "home_score": 30,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 99,
+      "week": 9,
+      "away": "Michigan",
+      "home": "Rutgers",
+      "kickoff_at": "2026-10-31T16:30:00+00:00",
+      "away_score": 28,
+      "home_score": 21,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 93,
+      "week": 9,
+      "away": "Minnesota",
+      "home": "Indiana",
+      "kickoff_at": "2026-10-31T19:30:00+00:00",
+      "away_score": 16,
+      "home_score": 23,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 97,
+      "week": 9,
+      "away": "Northwestern",
+      "home": "Oregon",
+      "kickoff_at": "2026-10-31T19:30:00+00:00",
+      "away_score": 26,
+      "home_score": 34,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 100,
+      "week": 9,
+      "away": "Nevada",
+      "home": "UCLA",
+      "kickoff_at": "2026-10-31T20:15:00+00:00",
+      "away_score": 0,
+      "home_score": 27,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 98,
+      "week": 9,
+      "away": "Purdue",
+      "home": "Penn State",
+      "kickoff_at": "2026-10-31T20:15:00+00:00",
+      "away_score": 17,
+      "home_score": 31,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 101,
+      "week": 9,
+      "away": "Ohio State",
+      "home": "USC",
+      "kickoff_at": "2026-10-31T23:30:00+00:00",
+      "away_score": 18,
+      "home_score": 30,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 96,
+      "week": 9,
+      "away": "Washington",
+      "home": "Nebraska",
+      "kickoff_at": "2026-11-01T00:00:00+00:00",
+      "away_score": 17,
+      "home_score": 10,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:03:13.957415+00:00"
+    },
+    {
+      "id": 102,
+      "week": 10,
+      "away": "Nebraska",
+      "home": "Illinois",
+      "kickoff_at": "2026-11-07T01:00:00+00:00",
+      "away_score": 13,
+      "home_score": 24,
+      "winner": "Illinois",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 104,
+      "week": 10,
+      "away": "UCLA",
+      "home": "Minnesota",
+      "kickoff_at": "2026-11-07T17:00:00+00:00",
+      "away_score": 34,
+      "home_score": 20,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 107,
+      "week": 10,
+      "away": "Maryland",
+      "home": "Purdue",
+      "kickoff_at": "2026-11-07T17:30:00+00:00",
+      "away_score": 34,
+      "home_score": 29,
+      "winner": "Maryland",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 108,
+      "week": 10,
+      "away": "Penn State",
+      "home": "Washington",
+      "kickoff_at": "2026-11-07T20:30:00+00:00",
+      "away_score": 28,
+      "home_score": 25,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 106,
+      "week": 10,
+      "away": "Oregon",
+      "home": "Ohio State",
+      "kickoff_at": "2026-11-07T20:30:00+00:00",
+      "away_score": 41,
+      "home_score": 28,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 109,
+      "week": 10,
+      "away": "Rutgers",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-11-07T21:15:00+00:00",
+      "away_score": 10,
+      "home_score": 31,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 105,
+      "week": 10,
+      "away": "Iowa",
+      "home": "Northwestern",
+      "kickoff_at": "2026-11-08T00:30:00+00:00",
+      "away_score": 24,
+      "home_score": 10,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 103,
+      "week": 10,
+      "away": "Michigan State",
+      "home": "Michigan",
+      "kickoff_at": "2026-11-08T00:30:00+00:00",
+      "away_score": 15,
+      "home_score": 6,
+      "winner": "Michigan State",
+      "updated_at": "2026-07-14T16:03:14.438119+00:00"
+    },
+    {
+      "id": 110,
+      "week": 11,
+      "away": "Illinois",
+      "home": "UCLA",
+      "kickoff_at": "2026-11-14T02:00:00+00:00",
+      "away_score": 14,
+      "home_score": 22,
+      "winner": "UCLA",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 115,
+      "week": 11,
+      "away": "Northwestern",
+      "home": "Ohio State",
+      "kickoff_at": "2026-11-14T17:00:00+00:00",
+      "away_score": 19,
+      "home_score": 28,
+      "winner": "Ohio State",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 113,
+      "week": 11,
+      "away": "Wisconsin",
+      "home": "Maryland",
+      "kickoff_at": "2026-11-14T17:00:00+00:00",
+      "away_score": 21,
+      "home_score": 24,
+      "winner": "Maryland",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 118,
+      "week": 11,
+      "away": "Nebraska",
+      "home": "Rutgers",
+      "kickoff_at": "2026-11-14T17:30:00+00:00",
+      "away_score": 31,
+      "home_score": 0,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 111,
+      "week": 11,
+      "away": "USC",
+      "home": "Indiana",
+      "kickoff_at": "2026-11-14T20:30:00+00:00",
+      "away_score": 13,
+      "home_score": 27,
+      "winner": "Indiana",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 116,
+      "week": 11,
+      "away": "Michigan",
+      "home": "Oregon",
+      "kickoff_at": "2026-11-14T20:30:00+00:00",
+      "away_score": 7,
+      "home_score": 31,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 114,
+      "week": 11,
+      "away": "Washington",
+      "home": "Michigan State",
+      "kickoff_at": "2026-11-14T22:30:00+00:00",
+      "away_score": 21,
+      "home_score": 14,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 117,
+      "week": 11,
+      "away": "Minnesota",
+      "home": "Penn State",
+      "kickoff_at": "2026-11-15T00:00:00+00:00",
+      "away_score": 14,
+      "home_score": 42,
+      "winner": "Penn State",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 112,
+      "week": 11,
+      "away": "Purdue",
+      "home": "Iowa",
+      "kickoff_at": "2026-11-15T00:30:00+00:00",
+      "away_score": 7,
+      "home_score": 28,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:03:19.286663+00:00"
+    },
+    {
+      "id": 119,
+      "week": 12,
+      "away": "Oregon",
+      "home": "Michigan State",
+      "kickoff_at": "2026-11-21T01:00:00+00:00",
+      "away_score": 45,
+      "home_score": 7,
+      "winner": "Oregon",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 122,
+      "week": 12,
+      "away": "Northwestern",
+      "home": "Minnesota",
+      "kickoff_at": "2026-11-21T17:00:00+00:00",
+      "away_score": 17,
+      "home_score": 20,
+      "winner": "Minnesota",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 123,
+      "week": 12,
+      "away": "Ohio State",
+      "home": "Nebraska",
+      "kickoff_at": "2026-11-21T17:00:00+00:00",
+      "away_score": 28,
+      "home_score": 31,
+      "winner": "Nebraska",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 125,
+      "week": 12,
+      "away": "Wisconsin",
+      "home": "Purdue",
+      "kickoff_at": "2026-11-21T17:00:00+00:00",
+      "away_score": 42,
+      "home_score": 10,
+      "winner": "Wisconsin",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 120,
+      "week": 12,
+      "away": "Iowa",
+      "home": "Illinois",
+      "kickoff_at": "2026-11-21T19:30:00+00:00",
+      "away_score": 34,
+      "home_score": 17,
+      "winner": "Iowa",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 121,
+      "week": 12,
+      "away": "UCLA",
+      "home": "Michigan",
+      "kickoff_at": "2026-11-21T20:30:00+00:00",
+      "away_score": 16,
+      "home_score": 18,
+      "winner": "Michigan",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 127,
+      "week": 12,
+      "away": "Indiana",
+      "home": "Washington",
+      "kickoff_at": "2026-11-21T20:30:00+00:00",
+      "away_score": 24,
+      "home_score": 27,
+      "winner": "Washington",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 124,
+      "week": 12,
+      "away": "Rutgers",
+      "home": "Penn State",
+      "kickoff_at": "2026-11-21T20:30:00+00:00",
+      "away_score": 25,
+      "home_score": 24,
+      "winner": "Rutgers",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 126,
+      "week": 12,
+      "away": "Maryland",
+      "home": "USC",
+      "kickoff_at": "2026-11-21T23:15:00+00:00",
+      "away_score": 21,
+      "home_score": 35,
+      "winner": "USC",
+      "updated_at": "2026-07-14T16:03:26.321924+00:00"
+    },
+    {
+      "id": 128,
+      "week": 13,
+      "away": "Nebraska",
+      "home": "Iowa",
+      "kickoff_at": "2026-11-27T17:00:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 129,
+      "week": 13,
+      "away": "Minnesota",
+      "home": "Wisconsin",
+      "kickoff_at": "2026-11-28T00:30:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 136,
+      "week": 13,
+      "away": "Michigan",
+      "home": "Ohio State",
+      "kickoff_at": "2026-11-28T17:00:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 130,
+      "week": 13,
+      "away": "Illinois",
+      "home": "Northwestern",
+      "kickoff_at": "2026-11-28T17:30:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 132,
+      "week": 13,
+      "away": "Penn State",
+      "home": "Maryland",
+      "kickoff_at": "2026-11-28T20:30:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 135,
+      "week": 13,
+      "away": "USC",
+      "home": "UCLA",
+      "kickoff_at": "2026-11-28T20:30:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 134,
+      "week": 13,
+      "away": "Michigan State",
+      "home": "Rutgers",
+      "kickoff_at": "2026-11-28T21:15:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 131,
+      "week": 13,
+      "away": "Purdue",
+      "home": "Indiana",
+      "kickoff_at": "2026-11-29T00:00:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    },
+    {
+      "id": 133,
+      "week": 13,
+      "away": "Washington",
+      "home": "Oregon",
+      "kickoff_at": "2026-11-29T00:30:00+00:00",
+      "away_score": null,
+      "home_score": null,
+      "winner": null,
+      "updated_at": "2026-07-14T16:03:28.127227+00:00"
+    }
+  ],
+  "opponent_classification": [
+    {
+      "opponent": "Akron",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Ball State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Boise State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Boston College",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Bowling Green",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Buffalo",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "California",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Colorado",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Duke",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Eastern Illinois",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Eastern Michigan",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Eastern Washington",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Fresno State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Hampton",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Howard",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Indiana State",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Iowa State",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Kent State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Louisiana",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Marshall",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Mississippi State",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Nevada",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "North Dakota",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "North Texas",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Northern Illinois",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Northern Iowa",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Notre Dame",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Ohio",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Oklahoma",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Oklahoma State",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Portland State",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "San Diego State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "South Dakota State",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Southern Illinois",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Temple",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Texas",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Toledo",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "UAB",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "UConn",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "UMass",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Utah State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "UTEP",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Virginia Tech",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Wake Forest",
+      "eligible": true,
+      "category": "not_g5"
+    },
+    {
+      "opponent": "Washington State",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Western Illinois",
+      "eligible": false,
+      "category": null
+    },
+    {
+      "opponent": "Western Kentucky",
+      "eligible": true,
+      "category": "g5"
+    },
+    {
+      "opponent": "Western Michigan",
+      "eligible": true,
+      "category": "g5"
+    }
+  ],
+  "players": [
+    {
+      "id": "c5dd4a9c-1155-4508-b43f-fcebdf4151b8",
+      "name": "Aaron Drory",
+      "fan_of": null,
+      "created_at": "2026-09-02T13:39:48.243957+00:00"
+    },
+    {
+      "id": "8c219637-e874-4809-b08c-d37811c69500",
+      "name": "Adam Levy",
+      "fan_of": "Indiana",
+      "created_at": "2026-08-27T02:40:14.619353+00:00"
+    },
+    {
+      "id": "1078ca5e-30db-4a07-a047-90576c285c53",
+      "name": "Adam Silver",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-09-03T18:57:38.089629+00:00"
+    },
+    {
+      "id": "dd1dd50e-be9e-4b4b-9f9a-76c1fd10d930",
+      "name": "Andrew Kita",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-09-04T01:21:38.613049+00:00"
+    },
+    {
+      "id": "50da8cb3-8384-450d-aed0-ece17d14164b",
+      "name": "Art Benson",
+      "fan_of": "Ohio State",
+      "created_at": "2026-09-05T14:53:13.736668+00:00"
+    },
+    {
+      "id": "4c2d14ff-048f-42fb-997d-7442f17a8072",
+      "name": "Brett Sokol",
+      "fan_of": null,
+      "created_at": "2026-09-04T17:03:42.373808+00:00"
+    },
+    {
+      "id": "fe4ef5b3-8ac4-4713-8af0-ee059737bcdd",
+      "name": "Brett Wallace",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T18:49:01.660466+00:00"
+    },
+    {
+      "id": "75398fbe-05f2-466c-bcc2-f79933cf47f1",
+      "name": "Cole Fournier",
+      "fan_of": "Minnesota",
+      "created_at": "2026-09-03T18:40:35.165571+00:00"
+    },
+    {
+      "id": "897a005b-7d7c-42a5-b31e-14210c99aa56",
+      "name": "Connor Kraus",
+      "fan_of": null,
+      "created_at": "2026-08-27T14:45:24.841083+00:00"
+    },
+    {
+      "id": "515bad9c-8fac-4e3c-9999-b2f409a55e07",
+      "name": "Connor Ryan",
+      "fan_of": "Nebraska",
+      "created_at": "2026-09-03T19:41:13.815525+00:00"
+    },
+    {
+      "id": "3c7cd9b6-9071-49f3-a87e-002e2e9c2a27",
+      "name": "Dan Malter",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T20:03:37.11223+00:00"
+    },
+    {
+      "id": "e3875004-3179-41d9-a50a-3b886156186c",
+      "name": "Daniel Labosky",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-08-31T20:28:54.383439+00:00"
+    },
+    {
+      "id": "6765dc45-3452-4c6a-870b-6a36382ec1ef",
+      "name": "Danny Pozen",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T19:14:03.501563+00:00"
+    },
+    {
+      "id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "name": "David Frelich",
+      "fan_of": "Indiana",
+      "created_at": "2026-09-03T21:31:10.242074+00:00"
+    },
+    {
+      "id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "name": "Drew Malter",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-05T03:02:14.725633+00:00"
+    },
+    {
+      "id": "04c8d3dd-c313-421a-ad75-bd785f3746ea",
+      "name": "Drew Paul",
+      "fan_of": "Indiana",
+      "created_at": "2026-09-02T21:50:29.826375+00:00"
+    },
+    {
+      "id": "277e7c87-ea4b-4102-a90a-4229076fcb08",
+      "name": "Dylan Lurie",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T17:23:00.463011+00:00"
+    },
+    {
+      "id": "013afe34-87b9-4f66-869c-64d3cd87439b",
+      "name": "Elana Lurie",
+      "fan_of": null,
+      "created_at": "2026-09-05T13:53:39.767067+00:00"
+    },
+    {
+      "id": "cf4f84f3-ce6c-4a3f-b61e-6c8fc2547189",
+      "name": "Elliott Pollack",
+      "fan_of": "Northwestern",
+      "created_at": "2026-07-14T15:38:44.848568+00:00"
+    },
+    {
+      "id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "name": "Erik Smason",
+      "fan_of": "Ohio State",
+      "created_at": "2026-08-30T16:40:53.334894+00:00"
+    },
+    {
+      "id": "9d09a7d2-3da1-4508-b072-7d96bcc50bb8",
+      "name": "Gabe Gordon",
+      "fan_of": "Northwestern",
+      "created_at": "2026-09-03T20:22:04.729374+00:00"
+    },
+    {
+      "id": "57b88d1a-bffe-4f88-a8a9-93299a5d14d0",
+      "name": "Garrett Pollack",
+      "fan_of": "Northwestern",
+      "created_at": "2026-07-26T23:59:23.220989+00:00"
+    },
+    {
+      "id": "ebb2f652-3f7a-4f6a-a8be-8eb322ca58ff",
+      "name": "Jake Goffstein",
+      "fan_of": null,
+      "created_at": "2026-08-31T19:52:26.997625+00:00"
+    },
+    {
+      "id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "name": "Jason Jonesi",
+      "fan_of": "Iowa",
+      "created_at": "2026-09-03T22:25:02.909928+00:00"
+    },
+    {
+      "id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "name": "Kyle Benson",
+      "fan_of": "Ohio State",
+      "created_at": "2026-09-02T01:43:23.371728+00:00"
+    },
+    {
+      "id": "1e1e3c48-31cc-487f-9cbb-b6513ca77204",
+      "name": "Lauren Rochman",
+      "fan_of": "Nebraska",
+      "created_at": "2026-08-31T19:24:12.262118+00:00"
+    },
+    {
+      "id": "46f8236b-4126-4efe-984d-68ad74f22934",
+      "name": "Lexi Benson",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-02T01:40:22.444385+00:00"
+    },
+    {
+      "id": "bf4d4092-32a8-464a-b43a-727533cdd738",
+      "name": "Mark Oehlers",
+      "fan_of": "Michigan",
+      "created_at": "2026-08-25T23:03:28.133336+00:00"
+    },
+    {
+      "id": "d947925a-6e48-430c-a42f-39c95b15b751",
+      "name": "Mark Repkin",
+      "fan_of": null,
+      "created_at": "2026-09-05T00:17:56.708598+00:00"
+    },
+    {
+      "id": "0f41bd9c-8f52-40f1-b8a6-c2b7128438e1",
+      "name": "Marshall C Rader",
+      "fan_of": "UCLA",
+      "created_at": "2026-08-24T17:57:49.498612+00:00"
+    },
+    {
+      "id": "4a6f1e35-a58f-4ce8-8be2-c279f6ca42bc",
+      "name": "Mateo Price",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-24T21:28:55.249561+00:00"
+    },
+    {
+      "id": "2f3b1b0d-d066-462d-acb2-d2555a64ae1a",
+      "name": "Matthew Hirsh",
+      "fan_of": null,
+      "created_at": "2026-09-01T13:02:08.755248+00:00"
+    },
+    {
+      "id": "a30380b9-d8a3-443a-8712-8698ee492f54",
+      "name": "Michael Altman",
+      "fan_of": "Indiana",
+      "created_at": "2026-08-24T17:12:07.501261+00:00"
+    },
+    {
+      "id": "126b86be-9fab-41d1-a889-4b2b95ff6801",
+      "name": "Michael Drabelle",
+      "fan_of": null,
+      "created_at": "2026-09-03T20:57:02.874909+00:00"
+    },
+    {
+      "id": "98de40b8-e58e-424a-a4ad-dc333e7cea1e",
+      "name": "Mike Francis",
+      "fan_of": "Rutgers",
+      "created_at": "2026-08-25T18:05:13.830371+00:00"
+    },
+    {
+      "id": "d0cceedd-1261-40e7-a11c-6570555da1bc",
+      "name": "Nate Starr",
+      "fan_of": null,
+      "created_at": "2026-09-04T15:40:35.302985+00:00"
+    },
+    {
+      "id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "name": "Nathan Levy",
+      "fan_of": null,
+      "created_at": "2026-08-26T22:09:39.431481+00:00"
+    },
+    {
+      "id": "76e1b8b9-9354-4701-af5c-8b7e812abaef",
+      "name": "Neil Cablk",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-24T19:58:12.569798+00:00"
+    },
+    {
+      "id": "be93f49d-43f2-4e2d-876f-adf438a84447",
+      "name": "Nick Hyde",
+      "fan_of": "Illinois",
+      "created_at": "2026-08-31T19:49:44.509627+00:00"
+    },
+    {
+      "id": "c1940244-54ad-4e98-bc12-8189587972aa",
+      "name": "Nick Karris",
+      "fan_of": "Northwestern",
+      "created_at": "2026-09-03T15:59:27.30705+00:00"
+    },
+    {
+      "id": "df9d75f6-f75d-456c-939b-568c5c4c3e5b",
+      "name": "Ray Cantrell",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-31T00:25:31.9978+00:00"
+    },
+    {
+      "id": "e8ea4e2f-4f51-4b13-9a4b-2561373a3705",
+      "name": "Robby Templeton",
+      "fan_of": "UCLA",
+      "created_at": "2026-09-05T10:53:05.250005+00:00"
+    },
+    {
+      "id": "1539a766-4067-4820-961d-8ed286924bb5",
+      "name": "Rocco Miller",
+      "fan_of": "Washington",
+      "created_at": "2026-08-24T20:38:09.692365+00:00"
+    },
+    {
+      "id": "8f092d97-915e-49b3-b3b2-6a877efd4da7",
+      "name": "Sam Friedman",
+      "fan_of": null,
+      "created_at": "2026-09-03T20:00:14.040275+00:00"
+    },
+    {
+      "id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "name": "Sam Hardiman",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-05T02:13:31.531508+00:00"
+    },
+    {
+      "id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "name": "Sam Mintzer",
+      "fan_of": "Ohio State",
+      "created_at": "2026-08-25T23:44:51.786803+00:00"
+    },
+    {
+      "id": "c4fff576-9e03-4a1e-8c5f-f7d683713d6e",
+      "name": "Scott Albrecht",
+      "fan_of": "Michigan",
+      "created_at": "2026-09-03T21:40:28.984965+00:00"
+    },
+    {
+      "id": "87c161b4-696c-43e9-bd39-a304d32d4fbb",
+      "name": "Scott Rothschild",
+      "fan_of": "Illinois",
+      "created_at": "2026-08-31T20:20:26.280934+00:00"
+    },
+    {
+      "id": "dcd4fa04-bb01-4d5b-a80e-f5229ccaa1a4",
+      "name": "Steve Altman",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-25T01:43:10.41602+00:00"
+    },
+    {
+      "id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "name": "Taylor Lurie",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T22:50:40.335459+00:00"
+    },
+    {
+      "id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "name": "Tim Pugh",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T00:20:16.407235+00:00"
+    },
+    {
+      "id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "name": "TJ Doherty",
+      "fan_of": "Purdue",
+      "created_at": "2026-09-04T15:35:45.639649+00:00"
+    },
+    {
+      "id": "dbc4ffec-bec0-4a7e-8234-f79f4090a16a",
+      "name": "Todd Saltzberg",
+      "fan_of": null,
+      "created_at": "2026-08-24T17:52:59.519582+00:00"
+    },
+    {
+      "id": "1d6d221d-3b14-4a99-b8f2-8f68c14d170e",
+      "name": "Tom Drabelle",
+      "fan_of": null,
+      "created_at": "2026-08-31T23:20:50.755975+00:00"
+    },
+    {
+      "id": "22bcb772-d64c-45b7-b83e-fc9b5161282b",
+      "name": "Werner Gunn",
+      "fan_of": null,
+      "created_at": "2026-08-27T14:04:31.523579+00:00"
+    },
+    {
+      "id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "name": "Zach Greenspan",
+      "fan_of": null,
+      "created_at": "2026-09-05T14:05:31.381599+00:00"
+    }
+  ],
+  "board": [
+    {
+      "player_id": "c5dd4a9c-1155-4508-b43f-fcebdf4151b8",
+      "player_name": "Aaron Drory",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "8c219637-e874-4809-b08c-d37811c69500",
+      "player_name": "Adam Levy",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "1078ca5e-30db-4a07-a047-90576c285c53",
+      "player_name": "Adam Silver",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "dd1dd50e-be9e-4b4b-9f9a-76c1fd10d930",
+      "player_name": "Andrew Kita",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "50da8cb3-8384-450d-aed0-ece17d14164b",
+      "player_name": "Art Benson",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "4c2d14ff-048f-42fb-997d-7442f17a8072",
+      "player_name": "Brett Sokol",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "fe4ef5b3-8ac4-4713-8af0-ee059737bcdd",
+      "player_name": "Brett Wallace",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "75398fbe-05f2-466c-bcc2-f79933cf47f1",
+      "player_name": "Cole Fournier",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "897a005b-7d7c-42a5-b31e-14210c99aa56",
+      "player_name": "Connor Kraus",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "515bad9c-8fac-4e3c-9999-b2f409a55e07",
+      "player_name": "Connor Ryan",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "3c7cd9b6-9071-49f3-a87e-002e2e9c2a27",
+      "player_name": "Dan Malter",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "e3875004-3179-41d9-a50a-3b886156186c",
+      "player_name": "Daniel Labosky",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "6765dc45-3452-4c6a-870b-6a36382ec1ef",
+      "player_name": "Danny Pozen",
+      "week": 1,
+      "team": "Indiana",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "player_name": "Drew Malter",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "04c8d3dd-c313-421a-ad75-bd785f3746ea",
+      "player_name": "Drew Paul",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "277e7c87-ea4b-4102-a90a-4229076fcb08",
+      "player_name": "Dylan Lurie",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "013afe34-87b9-4f66-869c-64d3cd87439b",
+      "player_name": "Elana Lurie",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "cf4f84f3-ce6c-4a3f-b61e-6c8fc2547189",
+      "player_name": "Elliott Pollack",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "9d09a7d2-3da1-4508-b072-7d96bcc50bb8",
+      "player_name": "Gabe Gordon",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "57b88d1a-bffe-4f88-a8a9-93299a5d14d0",
+      "player_name": "Garrett Pollack",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "ebb2f652-3f7a-4f6a-a8be-8eb322ca58ff",
+      "player_name": "Jake Goffstein",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "player_name": "Jason Jonesi",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "1e1e3c48-31cc-487f-9cbb-b6513ca77204",
+      "player_name": "Lauren Rochman",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "46f8236b-4126-4efe-984d-68ad74f22934",
+      "player_name": "Lexi Benson",
+      "week": 1,
+      "team": "Michigan",
+      "revealed": true
+    },
+    {
+      "player_id": "bf4d4092-32a8-464a-b43a-727533cdd738",
+      "player_name": "Mark Oehlers",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "d947925a-6e48-430c-a42f-39c95b15b751",
+      "player_name": "Mark Repkin",
+      "week": 1,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "0f41bd9c-8f52-40f1-b8a6-c2b7128438e1",
+      "player_name": "Marshall C Rader",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "4a6f1e35-a58f-4ce8-8be2-c279f6ca42bc",
+      "player_name": "Mateo Price",
+      "week": 1,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "2f3b1b0d-d066-462d-acb2-d2555a64ae1a",
+      "player_name": "Matthew Hirsh",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "a30380b9-d8a3-443a-8712-8698ee492f54",
+      "player_name": "Michael Altman",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "126b86be-9fab-41d1-a889-4b2b95ff6801",
+      "player_name": "Michael Drabelle",
+      "week": 1,
+      "team": "Michigan",
+      "revealed": true
+    },
+    {
+      "player_id": "98de40b8-e58e-424a-a4ad-dc333e7cea1e",
+      "player_name": "Mike Francis",
+      "week": 1,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "d0cceedd-1261-40e7-a11c-6570555da1bc",
+      "player_name": "Nate Starr",
+      "week": 1,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "player_name": "Nathan Levy",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "76e1b8b9-9354-4701-af5c-8b7e812abaef",
+      "player_name": "Neil Cablk",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "be93f49d-43f2-4e2d-876f-adf438a84447",
+      "player_name": "Nick Hyde",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "c1940244-54ad-4e98-bc12-8189587972aa",
+      "player_name": "Nick Karris",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "df9d75f6-f75d-456c-939b-568c5c4c3e5b",
+      "player_name": "Ray Cantrell",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "e8ea4e2f-4f51-4b13-9a4b-2561373a3705",
+      "player_name": "Robby Templeton",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "1539a766-4067-4820-961d-8ed286924bb5",
+      "player_name": "Rocco Miller",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "8f092d97-915e-49b3-b3b2-6a877efd4da7",
+      "player_name": "Sam Friedman",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "player_name": "Sam Hardiman",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "player_name": "Sam Mintzer",
+      "week": 1,
+      "team": "Illinois",
+      "revealed": true
+    },
+    {
+      "player_id": "c4fff576-9e03-4a1e-8c5f-f7d683713d6e",
+      "player_name": "Scott Albrecht",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "87c161b4-696c-43e9-bd39-a304d32d4fbb",
+      "player_name": "Scott Rothschild",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "dcd4fa04-bb01-4d5b-a80e-f5229ccaa1a4",
+      "player_name": "Steve Altman",
+      "week": 1,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "player_name": "Taylor Lurie",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "player_name": "Tim Pugh",
+      "week": 1,
+      "team": "Michigan State",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "dbc4ffec-bec0-4a7e-8234-f79f4090a16a",
+      "player_name": "Todd Saltzberg",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "1d6d221d-3b14-4a99-b8f2-8f68c14d170e",
+      "player_name": "Tom Drabelle",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "22bcb772-d64c-45b7-b83e-fc9b5161282b",
+      "player_name": "Werner Gunn",
+      "week": 1,
+      "team": "Rutgers",
+      "revealed": true
+    },
+    {
+      "player_id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "player_name": "Zach Greenspan",
+      "week": 1,
+      "team": "Nebraska",
+      "revealed": true
+    },
+    {
+      "player_id": "1078ca5e-30db-4a07-a047-90576c285c53",
+      "player_name": "Adam Silver",
+      "week": 2,
+      "team": "Minnesota",
+      "revealed": true
+    },
+    {
+      "player_id": "dd1dd50e-be9e-4b4b-9f9a-76c1fd10d930",
+      "player_name": "Andrew Kita",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "50da8cb3-8384-450d-aed0-ece17d14164b",
+      "player_name": "Art Benson",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "4c2d14ff-048f-42fb-997d-7442f17a8072",
+      "player_name": "Brett Sokol",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "897a005b-7d7c-42a5-b31e-14210c99aa56",
+      "player_name": "Connor Kraus",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "6765dc45-3452-4c6a-870b-6a36382ec1ef",
+      "player_name": "Danny Pozen",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "player_name": "Drew Malter",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "277e7c87-ea4b-4102-a90a-4229076fcb08",
+      "player_name": "Dylan Lurie",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "013afe34-87b9-4f66-869c-64d3cd87439b",
+      "player_name": "Elana Lurie",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "player_name": "Jason Jonesi",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "46f8236b-4126-4efe-984d-68ad74f22934",
+      "player_name": "Lexi Benson",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "d947925a-6e48-430c-a42f-39c95b15b751",
+      "player_name": "Mark Repkin",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "4a6f1e35-a58f-4ce8-8be2-c279f6ca42bc",
+      "player_name": "Mateo Price",
+      "week": 2,
+      "team": "Minnesota",
+      "revealed": true
+    },
+    {
+      "player_id": "126b86be-9fab-41d1-a889-4b2b95ff6801",
+      "player_name": "Michael Drabelle",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "98de40b8-e58e-424a-a4ad-dc333e7cea1e",
+      "player_name": "Mike Francis",
+      "week": 2,
+      "team": "Illinois",
+      "revealed": true
+    },
+    {
+      "player_id": "d0cceedd-1261-40e7-a11c-6570555da1bc",
+      "player_name": "Nate Starr",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "player_name": "Nathan Levy",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "e8ea4e2f-4f51-4b13-9a4b-2561373a3705",
+      "player_name": "Robby Templeton",
+      "week": 2,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "player_name": "Sam Hardiman",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "player_name": "Sam Mintzer",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "dcd4fa04-bb01-4d5b-a80e-f5229ccaa1a4",
+      "player_name": "Steve Altman",
+      "week": 2,
+      "team": "Illinois",
+      "revealed": true
+    },
+    {
+      "player_id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "player_name": "Taylor Lurie",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "player_name": "Tim Pugh",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "player_name": "Zach Greenspan",
+      "week": 2,
+      "team": "Iowa",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 3,
+      "team": "USC",
+      "revealed": true
+    },
+    {
+      "player_id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "player_name": "Drew Malter",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 3,
+      "team": "USC",
+      "revealed": true
+    },
+    {
+      "player_id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "player_name": "Jason Jonesi",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 3,
+      "team": "USC",
+      "revealed": true
+    },
+    {
+      "player_id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "player_name": "Nathan Levy",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "player_name": "Sam Hardiman",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "player_name": "Sam Mintzer",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "player_name": "Taylor Lurie",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "player_name": "Tim Pugh",
+      "week": 3,
+      "team": "USC",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 3,
+      "team": "USC",
+      "revealed": true
+    },
+    {
+      "player_id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "player_name": "Zach Greenspan",
+      "week": 3,
+      "team": "UCLA",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 4,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "player_name": "Drew Malter",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 4,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "player_name": "Jason Jonesi",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 4,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "player_name": "Nathan Levy",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "player_name": "Sam Hardiman",
+      "week": 4,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "player_name": "Sam Mintzer",
+      "week": 4,
+      "team": "Penn State",
+      "revealed": true
+    },
+    {
+      "player_id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "player_name": "Taylor Lurie",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "player_name": "Tim Pugh",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 4,
+      "team": "Indiana",
+      "revealed": true
+    },
+    {
+      "player_id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "player_name": "Zach Greenspan",
+      "week": 4,
+      "team": "Washington",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 5,
+      "team": "Indiana",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 5,
+      "team": "Indiana",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 5,
+      "team": "Indiana",
+      "revealed": true
+    },
+    {
+      "player_id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "player_name": "Sam Hardiman",
+      "week": 5,
+      "team": "Illinois",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 5,
+      "team": "Ohio State",
+      "revealed": true
+    },
+    {
+      "player_id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "player_name": "David Frelich",
+      "week": 6,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "player_name": "Erik Smason",
+      "week": 6,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "player_name": "Kyle Benson",
+      "week": 6,
+      "team": "Oregon",
+      "revealed": true
+    },
+    {
+      "player_id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "player_name": "TJ Doherty",
+      "week": 6,
+      "team": "Oregon",
+      "revealed": true
+    }
+  ],
+  "week_deadlines": {
+    "1": "2026-09-05T15:59:00+00:00",
+    "2": "2026-09-12T15:59:00+00:00",
+    "3": "2026-09-19T15:59:00+00:00",
+    "4": "2026-09-26T15:59:00+00:00",
+    "5": "2026-10-03T15:59:00+00:00",
+    "6": "2026-10-10T15:59:00+00:00",
+    "7": "2026-10-17T15:59:00+00:00",
+    "8": "2026-10-24T15:59:00+00:00",
+    "9": "2026-10-31T15:59:00+00:00",
+    "10": "2026-11-07T16:59:00+00:00",
+    "11": "2026-11-14T16:59:00+00:00",
+    "12": "2026-11-21T16:59:00+00:00",
+    "13": "2026-11-28T16:59:00+00:00"
+  },
+  "week_reopen_times": {
+    "1": "2026-09-06T10:00:00+00:00",
+    "2": "2026-09-13T10:00:00+00:00",
+    "3": "2026-09-20T10:00:00+00:00",
+    "4": "2026-09-27T10:00:00+00:00",
+    "5": "2026-10-04T10:00:00+00:00",
+    "6": "2026-10-11T10:00:00+00:00",
+    "7": "2026-10-18T10:00:00+00:00",
+    "8": "2026-10-25T10:00:00+00:00",
+    "9": "2026-11-01T11:00:00+00:00",
+    "10": "2026-11-08T11:00:00+00:00",
+    "11": "2026-11-15T11:00:00+00:00",
+    "12": "2026-11-22T11:00:00+00:00",
+    "13": "2026-11-29T11:00:00+00:00"
+  },
+  "final_player_state": [
+    {
+      "id": "c5dd4a9c-1155-4508-b43f-fcebdf4151b8",
+      "name": "Aaron Drory",
+      "fan_of": null,
+      "created_at": "2026-09-02T13:39:48.243957+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "8c219637-e874-4809-b08c-d37811c69500",
+      "name": "Adam Levy",
+      "fan_of": "Indiana",
+      "created_at": "2026-08-27T02:40:14.619353+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "1078ca5e-30db-4a07-a047-90576c285c53",
+      "name": "Adam Silver",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-09-03T18:57:38.089629+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "dd1dd50e-be9e-4b4b-9f9a-76c1fd10d930",
+      "name": "Andrew Kita",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-09-04T01:21:38.613049+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "50da8cb3-8384-450d-aed0-ece17d14164b",
+      "name": "Art Benson",
+      "fan_of": "Ohio State",
+      "created_at": "2026-09-05T14:53:13.736668+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "4c2d14ff-048f-42fb-997d-7442f17a8072",
+      "name": "Brett Sokol",
+      "fan_of": null,
+      "created_at": "2026-09-04T17:03:42.373808+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "fe4ef5b3-8ac4-4713-8af0-ee059737bcdd",
+      "name": "Brett Wallace",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T18:49:01.660466+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "75398fbe-05f2-466c-bcc2-f79933cf47f1",
+      "name": "Cole Fournier",
+      "fan_of": "Minnesota",
+      "created_at": "2026-09-03T18:40:35.165571+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "897a005b-7d7c-42a5-b31e-14210c99aa56",
+      "name": "Connor Kraus",
+      "fan_of": null,
+      "created_at": "2026-08-27T14:45:24.841083+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "515bad9c-8fac-4e3c-9999-b2f409a55e07",
+      "name": "Connor Ryan",
+      "fan_of": "Nebraska",
+      "created_at": "2026-09-03T19:41:13.815525+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "3c7cd9b6-9071-49f3-a87e-002e2e9c2a27",
+      "name": "Dan Malter",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T20:03:37.11223+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "e3875004-3179-41d9-a50a-3b886156186c",
+      "name": "Daniel Labosky",
+      "fan_of": "Wisconsin",
+      "created_at": "2026-08-31T20:28:54.383439+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "6765dc45-3452-4c6a-870b-6a36382ec1ef",
+      "name": "Danny Pozen",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-03T19:14:03.501563+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "d97ac986-9a12-4fb3-afac-a282a12d6dea",
+      "name": "David Frelich",
+      "fan_of": "Indiana",
+      "created_at": "2026-09-03T21:31:10.242074+00:00",
+      "alive": false,
+      "eliminated_week": 6
+    },
+    {
+      "id": "696ff152-ef39-4bd5-85b6-ea88a0e92e67",
+      "name": "Drew Malter",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-05T03:02:14.725633+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "04c8d3dd-c313-421a-ad75-bd785f3746ea",
+      "name": "Drew Paul",
+      "fan_of": "Indiana",
+      "created_at": "2026-09-02T21:50:29.826375+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "277e7c87-ea4b-4102-a90a-4229076fcb08",
+      "name": "Dylan Lurie",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T17:23:00.463011+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "013afe34-87b9-4f66-869c-64d3cd87439b",
+      "name": "Elana Lurie",
+      "fan_of": null,
+      "created_at": "2026-09-05T13:53:39.767067+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "cf4f84f3-ce6c-4a3f-b61e-6c8fc2547189",
+      "name": "Elliott Pollack",
+      "fan_of": "Northwestern",
+      "created_at": "2026-07-14T15:38:44.848568+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "5450e83e-5b12-462d-ae0a-0c8448d43209",
+      "name": "Erik Smason",
+      "fan_of": "Ohio State",
+      "created_at": "2026-08-30T16:40:53.334894+00:00",
+      "alive": false,
+      "eliminated_week": 6
+    },
+    {
+      "id": "9d09a7d2-3da1-4508-b072-7d96bcc50bb8",
+      "name": "Gabe Gordon",
+      "fan_of": "Northwestern",
+      "created_at": "2026-09-03T20:22:04.729374+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "57b88d1a-bffe-4f88-a8a9-93299a5d14d0",
+      "name": "Garrett Pollack",
+      "fan_of": "Northwestern",
+      "created_at": "2026-07-26T23:59:23.220989+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "ebb2f652-3f7a-4f6a-a8be-8eb322ca58ff",
+      "name": "Jake Goffstein",
+      "fan_of": null,
+      "created_at": "2026-08-31T19:52:26.997625+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "12473369-a2f6-49d3-8579-ee2623883a60",
+      "name": "Jason Jonesi",
+      "fan_of": "Iowa",
+      "created_at": "2026-09-03T22:25:02.909928+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "df0377d1-510f-4231-8bd0-8400dd53ecd7",
+      "name": "Kyle Benson",
+      "fan_of": "Ohio State",
+      "created_at": "2026-09-02T01:43:23.371728+00:00",
+      "alive": false,
+      "eliminated_week": 6
+    },
+    {
+      "id": "1e1e3c48-31cc-487f-9cbb-b6513ca77204",
+      "name": "Lauren Rochman",
+      "fan_of": "Nebraska",
+      "created_at": "2026-08-31T19:24:12.262118+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "46f8236b-4126-4efe-984d-68ad74f22934",
+      "name": "Lexi Benson",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-02T01:40:22.444385+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "bf4d4092-32a8-464a-b43a-727533cdd738",
+      "name": "Mark Oehlers",
+      "fan_of": "Michigan",
+      "created_at": "2026-08-25T23:03:28.133336+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "d947925a-6e48-430c-a42f-39c95b15b751",
+      "name": "Mark Repkin",
+      "fan_of": null,
+      "created_at": "2026-09-05T00:17:56.708598+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "0f41bd9c-8f52-40f1-b8a6-c2b7128438e1",
+      "name": "Marshall C Rader",
+      "fan_of": "UCLA",
+      "created_at": "2026-08-24T17:57:49.498612+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "4a6f1e35-a58f-4ce8-8be2-c279f6ca42bc",
+      "name": "Mateo Price",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-24T21:28:55.249561+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "2f3b1b0d-d066-462d-acb2-d2555a64ae1a",
+      "name": "Matthew Hirsh",
+      "fan_of": null,
+      "created_at": "2026-09-01T13:02:08.755248+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "a30380b9-d8a3-443a-8712-8698ee492f54",
+      "name": "Michael Altman",
+      "fan_of": "Indiana",
+      "created_at": "2026-08-24T17:12:07.501261+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "126b86be-9fab-41d1-a889-4b2b95ff6801",
+      "name": "Michael Drabelle",
+      "fan_of": null,
+      "created_at": "2026-09-03T20:57:02.874909+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "98de40b8-e58e-424a-a4ad-dc333e7cea1e",
+      "name": "Mike Francis",
+      "fan_of": "Rutgers",
+      "created_at": "2026-08-25T18:05:13.830371+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "d0cceedd-1261-40e7-a11c-6570555da1bc",
+      "name": "Nate Starr",
+      "fan_of": null,
+      "created_at": "2026-09-04T15:40:35.302985+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "a0fbaf17-29d8-486d-be4f-517ecba9a43a",
+      "name": "Nathan Levy",
+      "fan_of": null,
+      "created_at": "2026-08-26T22:09:39.431481+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "76e1b8b9-9354-4701-af5c-8b7e812abaef",
+      "name": "Neil Cablk",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-24T19:58:12.569798+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "be93f49d-43f2-4e2d-876f-adf438a84447",
+      "name": "Nick Hyde",
+      "fan_of": "Illinois",
+      "created_at": "2026-08-31T19:49:44.509627+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "c1940244-54ad-4e98-bc12-8189587972aa",
+      "name": "Nick Karris",
+      "fan_of": "Northwestern",
+      "created_at": "2026-09-03T15:59:27.30705+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "df9d75f6-f75d-456c-939b-568c5c4c3e5b",
+      "name": "Ray Cantrell",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-31T00:25:31.9978+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "e8ea4e2f-4f51-4b13-9a4b-2561373a3705",
+      "name": "Robby Templeton",
+      "fan_of": "UCLA",
+      "created_at": "2026-09-05T10:53:05.250005+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "1539a766-4067-4820-961d-8ed286924bb5",
+      "name": "Rocco Miller",
+      "fan_of": "Washington",
+      "created_at": "2026-08-24T20:38:09.692365+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "8f092d97-915e-49b3-b3b2-6a877efd4da7",
+      "name": "Sam Friedman",
+      "fan_of": null,
+      "created_at": "2026-09-03T20:00:14.040275+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "9fdf1c6c-5f6b-4f61-aa6c-9f24dd964ab0",
+      "name": "Sam Hardiman",
+      "fan_of": "Illinois",
+      "created_at": "2026-09-05T02:13:31.531508+00:00",
+      "alive": false,
+      "eliminated_week": 5
+    },
+    {
+      "id": "ba74fc11-70f5-4f80-b7c8-b71ebaebee11",
+      "name": "Sam Mintzer",
+      "fan_of": "Ohio State",
+      "created_at": "2026-08-25T23:44:51.786803+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "c4fff576-9e03-4a1e-8c5f-f7d683713d6e",
+      "name": "Scott Albrecht",
+      "fan_of": "Michigan",
+      "created_at": "2026-09-03T21:40:28.984965+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "87c161b4-696c-43e9-bd39-a304d32d4fbb",
+      "name": "Scott Rothschild",
+      "fan_of": "Illinois",
+      "created_at": "2026-08-31T20:20:26.280934+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "dcd4fa04-bb01-4d5b-a80e-f5229ccaa1a4",
+      "name": "Steve Altman",
+      "fan_of": "Northwestern",
+      "created_at": "2026-08-25T01:43:10.41602+00:00",
+      "alive": false,
+      "eliminated_week": 2
+    },
+    {
+      "id": "23b0d299-af7a-46ad-a7d1-cde4394a8371",
+      "name": "Taylor Lurie",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T22:50:40.335459+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "c53d648b-e532-42fc-86a2-d54cfc3b584f",
+      "name": "Tim Pugh",
+      "fan_of": "Penn State",
+      "created_at": "2026-09-04T00:20:16.407235+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    },
+    {
+      "id": "3b56dfdd-d442-48f5-a977-bd262f0c3714",
+      "name": "TJ Doherty",
+      "fan_of": "Purdue",
+      "created_at": "2026-09-04T15:35:45.639649+00:00",
+      "alive": false,
+      "eliminated_week": 6
+    },
+    {
+      "id": "dbc4ffec-bec0-4a7e-8234-f79f4090a16a",
+      "name": "Todd Saltzberg",
+      "fan_of": null,
+      "created_at": "2026-08-24T17:52:59.519582+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "1d6d221d-3b14-4a99-b8f2-8f68c14d170e",
+      "name": "Tom Drabelle",
+      "fan_of": null,
+      "created_at": "2026-08-31T23:20:50.755975+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "22bcb772-d64c-45b7-b83e-fc9b5161282b",
+      "name": "Werner Gunn",
+      "fan_of": null,
+      "created_at": "2026-08-27T14:04:31.523579+00:00",
+      "alive": false,
+      "eliminated_week": 1
+    },
+    {
+      "id": "eeb28b16-f56b-409a-a8fb-5bd3399acf3d",
+      "name": "Zach Greenspan",
+      "fan_of": null,
+      "created_at": "2026-09-05T14:05:31.381599+00:00",
+      "alive": false,
+      "eliminated_week": 4
+    }
+  ]
+}
