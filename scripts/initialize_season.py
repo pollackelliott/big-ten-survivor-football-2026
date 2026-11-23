@@ -65,8 +65,15 @@ CONFERENCE_TEAMS = {
 }
 
 NAME_FIXES = {
+    # ESPN/API aliases
     "Southern California": "USC",
     "Massachusetts": "UMass",
+
+    # Common commissioner-grid shorthand
+    "Mich. State": "Michigan State",
+    "Michigan St.": "Michigan State",
+    "Penn St.": "Penn State",
+    "Ohio St.": "Ohio State",
 }
 
 # Workbook fill -> (eligible, database category)
@@ -83,7 +90,9 @@ def fail(message: str) -> None:
 
 def normalize_name(name: str) -> str:
     clean = " ".join(str(name).strip().split())
-    return NAME_FIXES.get(clean, clean)
+    canonical = {team.lower(): team for team in CONFERENCE_TEAMS}
+    fixes = {alias.lower(): target for alias, target in NAME_FIXES.items()}
+    return fixes.get(clean.lower(), canonical.get(clean.lower(), clean))
 
 
 def normalized_fill(cell) -> str | None:
