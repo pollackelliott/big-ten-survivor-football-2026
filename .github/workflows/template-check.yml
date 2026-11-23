@@ -1,0 +1,74 @@
+name: Validate reusable football template
+
+on:
+  push:
+    branches:
+      - template/football-next-season
+    paths:
+      - .github/workflows/template-check.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: template/football-next-season
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: pip install pyyaml
+
+      - name: Check Python syntax
+        run: python -m py_compile scripts/initialize_season.py scripts/update_scores.py
+
+      - name: Check browser JavaScript syntax
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path("index.html").read_text(encoding="utf-8")
+          script = html.rsplit("<script>", 1)[1].split("</script>", 1)[0]
+          Path("/tmp/survivor-app.js").write_text(script, encoding="utf-8")
+          PY
+          node --check /tmp/survivor-app.js
+
+      - name: Parse workflow YAML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for path in [
+              Path(".github/workflows/initialize-season.yml"),
+              Path(".github/workflows/update-scores.yml"),
+          ]:
+              yaml.safe_load(path.read_text(encoding="utf-8"))
+              print(f"parsed {path}")
+          PY
+
+      - name: Check reusable schema invariants
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          schema = Path("supabase/schema.sql").read_text(encoding="utf-8")
+          app = Path("index.html").read_text(encoding="utf-8")
+          updater = Path("scripts/update_scores.py").read_text(encoding="utf-8")
+          workflow = Path(".github/workflows/update-scores.yml").read_text(encoding="utf-8")
+
+          assert "uuid := auth.uid()" in schema, "modern Supabase Auth submit path missing"
+          assert "pool_end_week()" in schema, "dead-man switch missing"
+          assert "insert into opponent_classification" not in schema, "season-specific opponent seeds remain"
+          assert "app-config.js" in app, "generated public config is not wired into frontend"
+          assert "default=2026" not in updater, "score updater still hardcodes 2026"
+          assert "2026-08-31" not in workflow, "score workflow still hardcodes 2026 start date"
+          print("template invariants passed")
+          PY
