@@ -1,18 +1,13 @@
 name: Update Big Ten Survivor scores
 
 on:
-  # Scheduled score refreshes. Cron is UTC. We intentionally run every day
-  # during the game window so weather/reschedule oddities are still covered.
-  # 17:00-08:30 UTC reaches well past the end of late Central-time games,
-  # including after daylight saving time ends.
   schedule:
     - cron: '*/30 17-23 * * *'
     - cron: '*/30 0-8 * * *'
-  # Manual trigger, e.g. to backfill or force a specific week.
   workflow_dispatch:
     inputs:
       week:
-        description: "Week number to update (leave blank to auto-detect from today's date)"
+        description: "Week number to update (leave blank to auto-detect)"
         required: false
         default: ''
 
@@ -27,6 +22,7 @@ jobs:
   update-scores:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     steps:
       - uses: actions/checkout@v4
 
@@ -36,9 +32,35 @@ jobs:
 
       - run: pip install requests
 
+      - name: Read initialized season
+        id: season
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          config = json.loads(Path("season.json").read_text(encoding="utf-8"))
+          year = config.get("year")
+          start = config.get("pool_start_date")
+          weeks = config.get("weeks", 13)
+
+          if not year or not start:
+              raise SystemExit("season.json has not been initialized")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"year={int(year)}\n")
+              fh.write(f"pool_start_date={start}\n")
+              fh.write(f"weeks={int(weeks)}\n")
+          PY
+
       - name: Determine week
         id: week
         shell: bash
+        env:
+          WEEK1_MONDAY: ${{ steps.season.outputs.pool_start_date }}
+          MAX_WEEKS: ${{ steps.season.outputs.weeks }}
         run: |
           set -euo pipefail
 
@@ -48,11 +70,6 @@ jobs:
             exit 0
           fi
 
-          # Big Ten Survivor Week 1 begins Monday, Aug. 31. USC-San Jose State
-          # on Aug. 29 is Week Zero and is explicitly outside the pool.
-          # Automatic week rollover uses Chicago local date so Sunday-night UTC
-          # does not accidentally advance the survivor week.
-          WEEK1_MONDAY="2026-08-31"
           TODAY=$(TZ=America/Chicago date +%Y-%m-%d)
           DAYS=$(( ( $(date -d "$TODAY" +%s) - $(date -d "$WEEK1_MONDAY" +%s) ) / 86400 ))
 
@@ -60,9 +77,8 @@ jobs:
             echo "week=1" >> "$GITHUB_OUTPUT"
             if [ "${{ github.event_name }}" = "schedule" ]; then
               echo "run_scraper=false" >> "$GITHUB_OUTPUT"
-              echo "Big Ten Survivor has not begun; scheduled ingestion skipped until Aug. 31."
+              echo "Pool has not begun; scheduled ingestion skipped until $WEEK1_MONDAY."
             else
-              # Allow a preseason manual smoke test against Week 1.
               echo "run_scraper=true" >> "$GITHUB_OUTPUT"
               echo "Preseason manual run targeting pool Week 1."
             fi
@@ -71,22 +87,16 @@ jobs:
 
           WEEK=$(( DAYS / 7 + 1 ))
 
-          # On Mondays, also revisit the week that just ended. This protects
-          # late Sunday games from being stranded if ESPN finalizes them after
-          # the calendar rolls into the next survivor week.
           DOW=$(TZ=America/Chicago date +%u)
           if [ "$DOW" = "1" ] && [ "$WEEK" -gt 1 ]; then
             PREVIOUS_WEEK=$(( WEEK - 1 ))
-            if [ "$PREVIOUS_WEEK" -le 13 ]; then
+            if [ "$PREVIOUS_WEEK" -le "$MAX_WEEKS" ]; then
               echo "previous_week=$PREVIOUS_WEEK" >> "$GITHUB_OUTPUT"
               echo "Monday backfill enabled for pool week $PREVIOUS_WEEK."
             fi
           fi
 
-          # This pool has 13 regular-season weeks. Scheduled jobs after Week 13
-          # should not start ingesting championship/postseason games. A manual
-          # dispatch can still run any explicitly requested week.
-          if [ "$WEEK" -gt 13 ]; then
+          if [ "$WEEK" -gt "$MAX_WEEKS" ]; then
             echo "week=$WEEK" >> "$GITHUB_OUTPUT"
             echo "run_scraper=false" >> "$GITHUB_OUTPUT"
             echo "Regular-season pool is complete; scheduled score ingestion skipped."
@@ -101,11 +111,11 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python scripts/update_scores.py --week ${{ steps.week.outputs.previous_week }} --year 2026
+        run: python scripts/update_scores.py --week ${{ steps.week.outputs.previous_week }}
 
       - name: Run scraper
         if: steps.week.outputs.run_scraper == 'true'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python scripts/update_scores.py --week ${{ steps.week.outputs.week }} --year 2026
+        run: python scripts/update_scores.py --week ${{ steps.week.outputs.week }}
